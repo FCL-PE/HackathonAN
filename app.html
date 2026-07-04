@@ -1,670 +1,701 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Boussole — la loi pour les élus locaux</title>
-<link rel="icon" type="image/png" href="Favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Leckerli+One&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
- 
-<!-- ÉCRAN 1 : INSCRIPTION -->
-<div id="screen-signup" class="screen active">
- <div class="topbar">
-    <div class="brand"><img src="logo_thelma.png" alt="Thelma"></div>
-    <div class="who"><b id="whoRole">Maire</b> · <span id="whoCommune">votre commune</span></div>
-  </div>
- 
-  <div class="signup-card">
- 
-    <div class="tagline">La loi, remise dans son contexte, pour les élus qui la découvrent.</div>
- 
-    <label>Vous êtes…</label>
-    <div class="role-grid" id="roleGrid">
-      <div class="role-opt" data-role="Maire">Maire</div>
-      <div class="role-opt" data-role="Adjoint">Adjoint·e au maire</div>
-      <div class="role-opt" data-role="Conseiller municipal">Conseiller·e municipal·e</div>
-      <div class="role-opt" data-role="Conseiller communautaire">Conseiller·e communautaire</div>
-    </div>
- 
-    <label for="communeInput">Votre commune</label>
-    <input type="text" id="communeInput" placeholder="ex. Saint-Julien-en-Genevois" autocomplete="off">
- 
-    <button class="btn" id="signupBtn" disabled>Accéder à mon tableau de bord</button>
-  </div>
-</div>
- 
-<!-- ÉCRAN 2 : HOME -->
-<div id="screen-home" class="screen">
-  <div class="topbar">
-     <div class="brand"><img src="logo_thelma.png" alt="Thelma"></div>
-    <div class="who"><b id="whoRole">Maire</b> · <span id="whoCommune">votre commune</span></div>
-  </div>
-  <div class="home-wrap">
-    <div>
-      <div class="section-head">Explorer par thème</div>
-      <div class="theme-grid" id="themeGrid"></div>
-    </div>
-    <div class="urgent-col" id="urgentCol" onclick="goTimeline()">
-      <h3><span class="pulse"></span> À suivre pour votre commune</h3>
-      <div class="sub">Échéances récentes et à venir qui touchent votre mandat</div>
-      <div id="urgentList"></div>
-      <div class="u-cta">Voir la frise complète →</div>
-    </div>
-  </div>
-</div>
- 
-<!-- ÉCRAN 3bis : LISTE DES LOIS -->
-<div id="screen-lois" class="screen">
-  <div class="topbar">
-     <div class="brand"><img src="logo_thelma.png" alt="Thelma"></div>
-    <div class="who"><b id="whoRole3">Maire</b> · <span id="whoCommune3"></span></div>
-  </div>
-  <div class="tl-head">
-    <button class="back-link" onclick="goHome()">← Retour au tableau de bord</button>
-    <div class="tl-title">Urbanisme &amp; foncier — les textes du <a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043956924" target="_blank" style="color:var(--primary);text-decoration:underline;font-weight:800;">ZAN</a></div>
-    <div class="tl-sub">Cliquez sur un texte pour son résumé, ses liens, et l'argumentaire pour le défendre.</div>
-  </div>
-  <div style="max-width:1180px;margin:0 auto;padding:8px 28px 48px;">
-    <div id="loisList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;"></div>
-  </div>
-</div>
- 
-<!-- ÉCRAN 3 : TIMELINE -->
-<div id="screen-timeline" class="screen">
-  <div class="topbar">
-     <div class="brand"><img src="logo_thelma.png" alt="Thelma"></div>
-    <div class="who"><b id="whoRole2">Maire</b> · <span id="whoCommune2"></span></div>
-  </div>
-  <div class="tl-head">
-    <button class="back-link" onclick="goHome()">← Retour au tableau de bord</button>
-    <div class="tl-title" id="tlTitle">Votre feuille de route — mandat 2026-2032</div>
-    <div class="tl-sub">Les échéances qui engagent votre commune, du passé récent à la fin de votre mandat. Faites défiler vers la droite pour aller vers le futur.</div>
-    <div class="tl-legend">
-      <span><span class="lg-dot" style="background:#9aa5a0"></span> Échéance passée</span>
-      <span><span class="lg-dot" style="background:var(--clay)"></span> Échéance à venir — votre commune</span>
-      <span><span class="lg-dot" style="background:#7a8b9c"></span> Échéance nationale/régionale</span>
-      <span><span class="lg-dot" style="background:var(--forest)"></span> Délibération de votre commune</span>
-    </div>
-  </div>
-  <div class="scroll-hint">← passé · faites glisser vers le futur →</div>
-  <div class="tl-scroll">
-    <div class="tl-track" id="tlTrack"></div>
-  </div>
-</div>
- 
-<!-- ÉCRAN GANTT -->
-<div id="screen-gantt" class="screen">
-  <div class="topbar">
-    <div class="brand"><img src="logo_thelma.png" alt="Thelma"></div>
-    <div class="who"><b id="whoRole4">Maire</b> · <span id="whoCommune4"></span></div>
-  </div>
-  <div class="tl-head">
-    <button class="back-link" onclick="goHome()">← Retour au tableau de bord</button>
-    <div class="tl-title">Votre feuille de route — mandat 2026-2032</div>
-    <div class="tl-sub">
-      Chaque barre représente la période d'action recommandée avant l'échéance.
-      Cliquez sur une barre pour les détails et les textes de loi associés.
-      &nbsp;·&nbsp;
-      <button onclick="goLois()" style="background:none;border:none;color:var(--primary);font-size:14px;font-weight:600;cursor:pointer;text-decoration:underline;font-family:inherit;padding:0;">[ Historique ]</button>
-    </div>
-  </div>
-  <div style="max-width:1180px;margin:0 auto;padding:16px 28px 48px;overflow-x:auto;">
-    <div id="ganttContainer"></div>
-  </div>
-</div>
- 
-<!-- MODALE -->
-<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
-  <div class="modal" id="modalBox"></div>
-</div>
- 
-<script>
-const DATA = [{"numero": "2021-1104", "titre": "Loi Climat et Résilience", "date": "2021-08-22", "categorie": "fondatrice", "resume": "Loi fondatrice du ZAN : objectif zéro artificialisation nette en 2050, réduction de moitié de la consommation d'espaces 2021-2031, définit artificialisation/renaturation, impose la territorialisation (SRADDET, SCoT, PLU).", "relations": [], "nature": "loi"}, {"numero": "2022-217", "titre": "Loi 3DS", "date": "2022-02-21", "categorie": "fondatrice", "resume": "Premiers ajustements du calendrier et des modalités de territorialisation.", "relations": [{"cible": "2021-1104", "type": "modifie", "detail": "article 194"}], "nature": "loi"}, {"numero": "2023-175", "titre": "Loi APER (énergies renouvelables)", "date": "2023-03-10", "categorie": "fondatrice", "resume": "Articule le ZAN avec le photovoltaïque, l'agrivoltaïsme et les projets solaires sur espaces agricoles/naturels/forestiers.", "relations": [{"cible": "2021-1104", "type": "précise", "detail": null}], "nature": "loi"}, {"numero": "2023-630", "titre": "Loi ZAN 2", "date": "2023-07-20", "categorie": "fondatrice", "resume": "Principale loi corrective : garantie communale d'un hectare, mutualisation, traitement séparé des grands projets, conférence régionale de gouvernance.", "relations": [{"cible": "2021-1104", "type": "corrige", "detail": null}], "nature": "loi"}, {"numero": "2025-1129", "titre": "Loi de simplification de l'urbanisme et du logement", "date": "2025-11-26", "categorie": "fondatrice", "resume": "Modifie à nouveau l'article 194, simplifie l'intégration des objectifs de sobriété foncière dans les documents d'urbanisme.", "relations": [{"cible": "2021-1104", "type": "modifie", "detail": "article 194"}], "nature": "loi"}, {"numero": "2000-1208", "titre": "Loi SRU", "date": "2000-12-13", "categorie": "preparatoire", "resume": "Introduit l'objectif d'utilisation économe des espaces, renforce SCoT et PLU.", "relations": [], "nature": "loi"}, {"numero": "2009-967", "titre": "Loi Grenelle I", "date": "2009-08-03", "categorie": "preparatoire", "resume": "Affirme la nécessité de lutter contre l'étalement urbain.", "relations": [], "nature": "loi"}, {"numero": "2010-788", "titre": "Loi Grenelle II", "date": "2010-07-12", "categorie": "preparatoire", "resume": "Impose aux SCoT/PLU des objectifs chiffrés de limitation de la consommation d'espace.", "relations": [], "nature": "loi"}, {"numero": "2010-874", "titre": "Loi de modernisation de l'agriculture et de la pêche", "date": "2010-07-27", "categorie": "preparatoire", "resume": "Crée l'Observatoire national de la consommation des espaces agricoles, ancêtre des CDPENAF.", "relations": [], "nature": "loi"}, {"numero": "2014-366", "titre": "Loi ALUR", "date": "2014-03-24", "categorie": "preparatoire", "resume": "Renforce la lutte contre l'étalement urbain, lutte contre le pastillage en zones agricoles.", "relations": [], "nature": "loi"}, {"numero": "2014-1170", "titre": "Loi d'avenir pour l'agriculture", "date": "2014-10-13", "categorie": "preparatoire", "resume": "Crée les CDPENAF (préservation des espaces naturels, agricoles, forestiers).", "relations": [], "nature": "loi"}, {"numero": "2015-991", "titre": "Loi NOTRe", "date": "2015-08-07", "categorie": "preparatoire", "resume": "Crée le SRADDET, futur support régional de territorialisation du ZAN.", "relations": [], "nature": "loi"}, {"numero": "2016-1087", "titre": "Loi Biodiversité", "date": "2016-08-08", "categorie": "preparatoire", "resume": "Renforce éviter/réduire/compenser, fondement environnemental du ZAN (ne le crée pas).", "relations": [], "nature": "loi"}, {"numero": "2018-1021", "titre": "Loi ELAN", "date": "2018-11-23", "categorie": "preparatoire", "resume": "Favorise le renouvellement urbain : friches, projets partenariaux d'aménagement.", "relations": [], "nature": "loi"}, {"numero": "2023-973", "titre": "Loi Industrie verte", "date": "2023-10-23", "categorie": "sectorielle", "resume": "Articule réindustrialisation et sobriété foncière (friches, foncier industriel).", "relations": [], "nature": "loi"}, {"numero": "2025-541", "titre": "Loi transformation des bureaux en logements", "date": "2025-06-16", "categorie": "sectorielle", "resume": "Facilite le recyclage du bâti existant sans extension urbaine.", "relations": [], "nature": "loi"}, {"numero": "2026-403", "titre": "Loi de simplification de la vie économique", "date": "2026-05-26", "categorie": "sectorielle", "resume": "Requalification des zones commerciales sans artificialisation supplémentaire.", "relations": [{"cible": "2022-217", "type": "prolonge", "detail": "expérimentations issues de la loi 3DS"}], "nature": "loi"}, {"numero": "2022-762", "titre": "Territorialisation dans les SRADDET", "date": "2022-04-29", "categorie": "noyau", "resume": "Premier décret de territorialisation : déclinaison territoriale des objectifs.", "relations": [{"cible": "2023-1097", "type": "ajusté_par", "detail": null}], "nature": "décret"}, {"numero": "2022-763", "titre": "Nomenclature de l'artificialisation des sols", "date": "2022-04-29", "categorie": "noyau", "resume": "Première nomenclature : surfaces artificialisées vs non artificialisées.", "relations": [{"cible": "2023-1096", "type": "remplacé_par", "detail": null}], "nature": "décret"}, {"numero": "2023-1096", "titre": "Évaluation et suivi de l'artificialisation des sols", "date": "2023-11-27", "categorie": "noyau", "resume": "Remplace la nomenclature 2022, crée l'Observatoire national de l'artificialisation, organise le rapport triennal des communes/EPCI.", "relations": [{"cible": "2022-763", "type": "remplace", "detail": null}], "nature": "décret"}, {"numero": "2023-1097", "titre": "Territorialisation révisée", "date": "2023-11-27", "categorie": "noyau", "resume": "Assouplit et complète le décret de 2022 : critères de territorialisation, communes littorales/montagne, articulation régions/SCoT/bloc communal.", "relations": [{"cible": "2022-762", "type": "assouplit_complete", "detail": null}, {"cible": "2023-630", "type": "tient_compte_de", "detail": "loi ZAN 2"}], "nature": "décret"}, {"numero": "2023-1098", "titre": "Commission régionale de conciliation", "date": "2023-11-27", "categorie": "noyau", "resume": "Organise la commission saisie en cas de contestation d'un projet d'envergure nationale/européenne (3 représentants région, 3 État, 1 magistrat président).", "relations": [], "nature": "décret"}, {"numero": "2023-1408", "titre": "Photovoltaïque et calcul de consommation d'espace", "date": "2023-12-29", "categorie": "noyau", "resume": "Conditions pour qu'une installation photovoltaïque ne soit pas comptée comme consommation d'ENAF (réversibilité, couvert végétal).", "relations": [], "nature": "décret"}, {"numero": "2022-1309", "titre": "Observatoires de l'habitat et du foncier", "date": "2022-10-12", "categorie": "connexe", "resume": "Suivi des marchés fonciers, friches, locaux vacants, potentiel de densification.", "relations": [], "nature": "décret"}, {"numero": "2022-1312", "titre": "Autorisation d'exploitation commerciale et artificialisation", "date": "2022-10-13", "categorie": "connexe", "resume": "Interdiction de principe d'autoriser un projet commercial artificialisant, conditions de dérogation.", "relations": [], "nature": "décret"}, {"numero": "2023-1259", "titre": "Définition de la friche", "date": "2023-12-26", "categorie": "connexe", "resume": "Critères d'identification d'une friche — levier opérationnel clé du ZAN.", "relations": [], "nature": "décret"}, {"numero": "2024-318", "titre": "Agrivoltaïsme", "date": "2024-04-08", "categorie": "connexe", "resume": "Conditions d'implantation d'installations photovoltaïques sur terrains agricoles.", "relations": [{"cible": "2023-1408", "type": "à_articuler_avec", "detail": null}], "nature": "décret"}, {"numero": "2024-452", "titre": "Certificat de projet dans les friches (expérimental)", "date": "2024-05-21", "categorie": "connexe", "resume": "Guichet expérimental (juin 2024 - mai 2027) pour connaître en amont régimes juridiques et délais applicables à un projet en friche.", "relations": [], "nature": "décret"}, {"numero": "—", "titre": "Proposition de loi TRACE", "date": "2025-03-18", "categorie": "en_cours", "resume": "adoptée par le Sénat, transmise à l'AN", "relations": [], "nature": "proposition"}, {"numero": "—", "titre": "Proposition de loi transition foncière", "date": "2025-06-04", "categorie": "en_cours", "resume": "déposée à l'Assemblée nationale", "relations": [], "nature": "proposition"}];
- 
-const ECHEANCES = {
-  "echeances": [
-    {
-      "date": "2024-11-22",
-      "titre": "SRADDET : intégration ZAN (régions)",
-      "niveau": "Région",
-      "statut": "passe",
-      "obligation": "Les schémas régionaux devaient intégrer la trajectoire ZAN.",
-      "sanction": "À défaut, une baisse uniforme de -50% s'appliquait par défaut aux SCoT/PLU.",
-      "acteur_commune": false
-    },
-    {
-      "date": "2027-02-22",
-      "titre": "SCoT : intégration de la trajectoire",
-      "niveau": "Intercommunalité",
-      "statut": "a_venir",
-      "obligation": "Le Schéma de Cohérence Territoriale doit intégrer les objectifs de réduction.",
-      "sanction": "Sans intégration : les ouvertures à l'urbanisation sont suspendues.",
-      "acteur_commune": true,
-      "incertitude": "Report possible à 2031 si la proposition de loi TRACE est adoptée."
-    },
-    {
-      "date": "2028-02-22",
-      "titre": "PLU / PLUi / carte communale : intégration",
-      "niveau": "Commune",
-      "statut": "a_venir",
-      "obligation": "Votre Plan Local d'Urbanisme doit intégrer les objectifs de sobriété foncière.",
-      "sanction": "Sans intégration : aucune autorisation d'urbanisme délivrable en zone à urbaniser (AU).",
-      "acteur_commune": true,
-      "incertitude": "Report possible à 2036 si la proposition de loi TRACE est adoptée."
-    },
-    {
-      "date": "2031-12-31",
-      "titre": "Palier intermédiaire : -50% de consommation d'espaces",
-      "niveau": "National",
-      "statut": "a_venir",
-      "obligation": "Objectif de réduction de moitié de la consommation d'ENAF (2021-2031).",
-      "sanction": "Palier contesté : la PPL TRACE prévoit de le supprimer.",
-      "acteur_commune": false,
-      "incertitude": "Pourrait être abrogé (proposition de loi TRACE)."
+
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boussole — la loi pour les élus locaux</title>
+    <link rel="icon" type="image/png" href="Favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Leckerli+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+    /* Fond Gantt : gris avant 2026, blanc 2026-2032, gris après */
+    .gantt-track {
+    background: linear-gradient(
+        to right,
+        #f0f0f0 0%,
+        #f0f0f0 30.01%,
+        #ffffff 30.01%,
+        #ffffff 90.01%,
+        #f0f0f0 90.01%,
+        #f0f0f0 100%
+    );
     }
-  ],
-  "deliberations_demo": [
-    {
-      "date": "2024-09-12",
-      "titre": "Délibération : lancement de la révision du PLU",
-      "commune": true,
-      "statut": "fait",
-      "detail": "Conseil municipal — révision du PLU engagée pour intégrer la trajectoire ZAN.",
-      "lien_echeance": "2028-02-22"
-    },
-    {
-      "date": "2026-06-15",
-      "titre": "À prévoir : débat sur les orientations du PADD",
-      "commune": true,
-      "statut": "a_faire",
-      "detail": "Étape recommandée avant l'échéance PLU de février 2028.",
-      "lien_echeance": "2028-02-22"
+    /* Même fond sur le header timeline pour l'alignement visuel */
+    .gantt-timeline-col {
+    background: linear-gradient(
+        to right,
+        #f0f0f0 0%,
+        #f0f0f0 30.01%,
+        #ffffff 30.01%,
+        #ffffff 90.01%,
+        #f0f0f0 90.01%,
+        #f0f0f0 100%
+    );
     }
-  ]
-};
- 
-const ARGUMENTAIRES = {
-  "2021-1104": {
-    "numero": "2021-1104",
-    "pourquoi": {
-      "accroche": "La France perdait l'équivalent d'un département de terres naturelles ou agricoles tous les 7 à 10 ans.",
-      "explication": "Chaque année, environ 20 000 à 30 000 hectares d'espaces naturels, agricoles et forestiers étaient bétonnés. Cette artificialisation détruit des terres nourricières, aggrave les inondations (les sols imperméables ne retiennent plus l'eau) et accélère la perte de biodiversité. Le ZAN n'interdit pas de construire : il demande de le faire en recyclant l'existant (friches, logements vacants) plutôt qu'en grignotant toujours plus de terres."
-    },
-    "objections": [
-      {
-        "citoyen": "Mon terrain était constructible, il ne l'est plus : vous détruisez la valeur de mon patrimoine.",
-        "reponse": "C'est la difficulté la plus légitime. La loi prévoit justement une garantie communale d'au moins 1 hectare constructible pour chaque commune, précisément pour ne pas geler tout développement. Le classement d'un terrain relève du PLU, qui reste décidé localement : nous pouvons en discuter lors de la révision, et des mécanismes de compensation existent.",
-        "solide": true
-      },
-      {
-        "citoyen": "C'est une atteinte au droit de propriété.",
-        "reponse": "Le droit de construire n'a jamais été absolu : il a toujours dépendu des règles d'urbanisme (PLU, zones). Le Conseil d'État et le Conseil constitutionnel ont confirmé que la fixation d'objectifs de sobriété foncière est conforme à la Constitution. La propriété du terrain n'est pas remise en cause, seul son usage constructible est encadré, comme il l'a toujours été.",
-        "solide": true
-      },
-      {
-        "citoyen": "Pourquoi nous, petite commune rurale, alors que les métropoles continuent de s'étaler ?",
-        "reponse": "C'est une préoccupation entendue : la loi ZAN 2 de 2023 a ajouté des adaptations pour les communes rurales, littorales et de montagne, et une conférence régionale de gouvernance permet de répartir plus justement l'effort. Les grands projets nationaux (autoroutes, industrie) sont comptés à part, pour ne pas pénaliser votre enveloppe locale.",
-        "solide": true
-      }
+    </style>
+    </head>
+    <body>
+    
+    <!-- ÉCRAN 1 : INSCRIPTION -->
+    <div id="screen-signup" class="screen active">
+    <div class="topbar">
+        <div class="brand"><img src="logo_thelma.png" alt="Thelma"></div>
+        <div class="who"><b id="whoRole">Maire</b> · <span id="whoCommune">votre commune</span></div>
+    </div>
+    
+    <div class="signup-card">
+    
+        <div class="tagline">La loi, remise dans son contexte, pour les élus qui la découvrent.</div>
+    
+        <label>Vous êtes…</label>
+        <div class="role-grid" id="roleGrid">
+        <div class="role-opt" data-role="Maire">Maire</div>
+        <div class="role-opt" data-role="Adjoint">Adjoint·e au maire</div>
+        <div class="role-opt" data-role="Conseiller municipal">Conseiller·e municipal·e</div>
+        <div class="role-opt" data-role="Conseiller communautaire">Conseiller·e communautaire</div>
+        </div>
+    
+        <label for="communeInput">Votre commune</label>
+        <input type="text" id="communeInput" placeholder="ex. Saint-Julien-en-Genevois" autocomplete="off">
+    
+        <button class="btn" id="signupBtn" disabled>Accéder à mon tableau de bord</button>
+    </div>
+    </div>
+    
+    <!-- ÉCRAN 2 : HOME -->
+    <div id="screen-home" class="screen">
+    <div class="topbar">
+        <div class="brand"><img src="logo_thelma.png" alt="Thelma"></div>
+        <div class="who"><b id="whoRole">Maire</b> · <span id="whoCommune">votre commune</span></div>
+    </div>
+    <div class="home-wrap">
+        <div>
+        <div class="section-head">Explorer par thème</div>
+        <div class="theme-grid" id="themeGrid"></div>
+        </div>
+        <div class="urgent-col" id="urgentCol" onclick="goTimeline()">
+        <h3><span class="pulse"></span> À suivre pour votre commune</h3>
+        <div class="sub">Échéances récentes et à venir qui touchent votre mandat</div>
+        <div id="urgentList"></div>
+        <div class="u-cta">Voir la frise complète →</div>
+        </div>
+    </div>
+    </div>
+    
+    <!-- ÉCRAN 3bis : LISTE DES LOIS -->
+    <div id="screen-lois" class="screen">
+    <div class="topbar">
+        <div class="brand"><img src="logo_thelma.png" alt="Thelma"></div>
+        <div class="who"><b id="whoRole3">Maire</b> · <span id="whoCommune3"></span></div>
+    </div>
+    <div class="tl-head">
+        <button class="back-link" onclick="goHome()">← Retour au tableau de bord</button>
+        <div class="tl-title">Urbanisme &amp; foncier — les textes du ZAN</div>
+        <div class="tl-sub">Cliquez sur un texte pour son résumé, ses liens, et l'argumentaire pour le défendre.</div>
+    </div>
+    <div style="max-width:1180px;margin:0 auto;padding:8px 28px 48px;">
+        <div id="loisList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;"></div>
+    </div>
+    </div>
+    
+    <!-- ÉCRAN 3 : TIMELINE -->
+    <div id="screen-timeline" class="screen">
+    <div class="topbar">
+        <div class="brand"><img src="logo_thelma.png" alt="Thelma"></div>
+        <div class="who"><b id="whoRole2">Maire</b> · <span id="whoCommune2"></span></div>
+    </div>
+    <div class="tl-head">
+        <button class="back-link" onclick="goHome()">← Retour au tableau de bord</button>
+        <div class="tl-title" id="tlTitle">Votre feuille de route ZAN — mandat 2026-2032</div>
+        <div class="tl-sub">Les échéances qui engagent votre commune, du passé récent à la fin de votre mandat. Faites défiler vers la droite pour aller vers le futur.</div>
+        <div class="tl-legend">
+        <span><span class="lg-dot" style="background:#9aa5a0"></span> Échéance passée</span>
+        <span><span class="lg-dot" style="background:var(--clay)"></span> Échéance à venir — votre commune</span>
+        <span><span class="lg-dot" style="background:#7a8b9c"></span> Échéance nationale/régionale</span>
+        <span><span class="lg-dot" style="background:var(--forest)"></span> Délibération de votre commune</span>
+        </div>
+    </div>
+    <div class="scroll-hint">← passé · faites glisser vers le futur →</div>
+    <div class="tl-scroll">
+        <div class="tl-track" id="tlTrack"></div>
+    </div>
+    </div>
+    
+    
+    <!-- ÉCRAN GANTT -->
+    <div id="screen-gantt" class="screen">
+    <div class="topbar">
+        <div class="brand"><img src="logo_thelma.png" alt="Thelma"></div>
+        <div class="who"><b id="whoRole4">Maire</b> · <span id="whoCommune4"></span></div>
+    </div>
+    <div class="tl-head">
+        <button class="back-link" onclick="goHome()">← Retour au tableau de bord</button>
+        <div class="tl-title">Votre feuille de route — mandat 2026-2032</div>
+        <div class="tl-sub">
+        Chaque barre représente la période d'action recommandée avant l'échéance.
+        Cliquez sur une barre pour les détails et les textes de loi associés.
+        &nbsp;·&nbsp;
+        <button onclick="goLois()" style="background:none;border:none;color:var(--primary);font-size:14px;font-weight:600;cursor:pointer;text-decoration:underline;font-family:inherit;padding:0;">[ Historique ]</button>
+        </div>
+    </div>
+    <div style="max-width:1180px;margin:0 auto;padding:16px 28px 48px;overflow-x:auto;">
+        <div id="ganttContainer"></div>
+    </div>
+    </div>
+    
+    <!-- MODALE -->
+    <div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
+    <div class="modal" id="modalBox"></div>
+    </div>
+    
+    <script>
+    const DATA = [{"numero": "2021-1104", "titre": "Loi Climat et Résilience", "date": "2021-08-22", "categorie": "fondatrice", "resume": "Loi fondatrice du ZAN : objectif zéro artificialisation nette en 2050, réduction de moitié de la consommation d'espaces 2021-2031, définit artificialisation/renaturation, impose la territorialisation (SRADDET, SCoT, PLU).", "relations": [], "nature": "loi"}, {"numero": "2022-217", "titre": "Loi 3DS", "date": "2022-02-21", "categorie": "fondatrice", "resume": "Premiers ajustements du calendrier et des modalités de territorialisation.", "relations": [{"cible": "2021-1104", "type": "modifie", "detail": "article 194"}], "nature": "loi"}, {"numero": "2023-175", "titre": "Loi APER (énergies renouvelables)", "date": "2023-03-10", "categorie": "fondatrice", "resume": "Articule le ZAN avec le photovoltaïque, l'agrivoltaïsme et les projets solaires sur espaces agricoles/naturels/forestiers.", "relations": [{"cible": "2021-1104", "type": "précise", "detail": null}], "nature": "loi"}, {"numero": "2023-630", "titre": "Loi ZAN 2", "date": "2023-07-20", "categorie": "fondatrice", "resume": "Principale loi corrective : garantie communale d'un hectare, mutualisation, traitement séparé des grands projets, conférence régionale de gouvernance.", "relations": [{"cible": "2021-1104", "type": "corrige", "detail": null}], "nature": "loi"}, {"numero": "2025-1129", "titre": "Loi de simplification de l'urbanisme et du logement", "date": "2025-11-26", "categorie": "fondatrice", "resume": "Modifie à nouveau l'article 194, simplifie l'intégration des objectifs de sobriété foncière dans les documents d'urbanisme.", "relations": [{"cible": "2021-1104", "type": "modifie", "detail": "article 194"}], "nature": "loi"}, {"numero": "2000-1208", "titre": "Loi SRU", "date": "2000-12-13", "categorie": "preparatoire", "resume": "Introduit l'objectif d'utilisation économe des espaces, renforce SCoT et PLU.", "relations": [], "nature": "loi"}, {"numero": "2009-967", "titre": "Loi Grenelle I", "date": "2009-08-03", "categorie": "preparatoire", "resume": "Affirme la nécessité de lutter contre l'étalement urbain.", "relations": [], "nature": "loi"}, {"numero": "2010-788", "titre": "Loi Grenelle II", "date": "2010-07-12", "categorie": "preparatoire", "resume": "Impose aux SCoT/PLU des objectifs chiffrés de limitation de la consommation d'espace.", "relations": [], "nature": "loi"}, {"numero": "2010-874", "titre": "Loi de modernisation de l'agriculture et de la pêche", "date": "2010-07-27", "categorie": "preparatoire", "resume": "Crée l'Observatoire national de la consommation des espaces agricoles, ancêtre des CDPENAF.", "relations": [], "nature": "loi"}, {"numero": "2014-366", "titre": "Loi ALUR", "date": "2014-03-24", "categorie": "preparatoire", "resume": "Renforce la lutte contre l'étalement urbain, lutte contre le pastillage en zones agricoles.", "relations": [], "nature": "loi"}, {"numero": "2014-1170", "titre": "Loi d'avenir pour l'agriculture", "date": "2014-10-13", "categorie": "preparatoire", "resume": "Crée les CDPENAF (préservation des espaces naturels, agricoles, forestiers).", "relations": [], "nature": "loi"}, {"numero": "2015-991", "titre": "Loi NOTRe", "date": "2015-08-07", "categorie": "preparatoire", "resume": "Crée le SRADDET, futur support régional de territorialisation du ZAN.", "relations": [], "nature": "loi"}, {"numero": "2016-1087", "titre": "Loi Biodiversité", "date": "2016-08-08", "categorie": "preparatoire", "resume": "Renforce éviter/réduire/compenser, fondement environnemental du ZAN (ne le crée pas).", "relations": [], "nature": "loi"}, {"numero": "2018-1021", "titre": "Loi ELAN", "date": "2018-11-23", "categorie": "preparatoire", "resume": "Favorise le renouvellement urbain : friches, projets partenariaux d'aménagement.", "relations": [], "nature": "loi"}, {"numero": "2023-973", "titre": "Loi Industrie verte", "date": "2023-10-23", "categorie": "sectorielle", "resume": "Articule réindustrialisation et sobriété foncière (friches, foncier industriel).", "relations": [], "nature": "loi"}, {"numero": "2025-541", "titre": "Loi transformation des bureaux en logements", "date": "2025-06-16", "categorie": "sectorielle", "resume": "Facilite le recyclage du bâti existant sans extension urbaine.", "relations": [], "nature": "loi"}, {"numero": "2026-403", "titre": "Loi de simplification de la vie économique", "date": "2026-05-26", "categorie": "sectorielle", "resume": "Requalification des zones commerciales sans artificialisation supplémentaire.", "relations": [{"cible": "2022-217", "type": "prolonge", "detail": "expérimentations issues de la loi 3DS"}], "nature": "loi"}, {"numero": "2022-762", "titre": "Territorialisation dans les SRADDET", "date": "2022-04-29", "categorie": "noyau", "resume": "Premier décret de territorialisation : déclinaison territoriale des objectifs.", "relations": [{"cible": "2023-1097", "type": "ajusté_par", "detail": null}], "nature": "décret"}, {"numero": "2022-763", "titre": "Nomenclature de l'artificialisation des sols", "date": "2022-04-29", "categorie": "noyau", "resume": "Première nomenclature : surfaces artificialisées vs non artificialisées.", "relations": [{"cible": "2023-1096", "type": "remplacé_par", "detail": null}], "nature": "décret"}, {"numero": "2023-1096", "titre": "Évaluation et suivi de l'artificialisation des sols", "date": "2023-11-27", "categorie": "noyau", "resume": "Remplace la nomenclature 2022, crée l'Observatoire national de l'artificialisation, organise le rapport triennal des communes/EPCI.", "relations": [{"cible": "2022-763", "type": "remplace", "detail": null}], "nature": "décret"}, {"numero": "2023-1097", "titre": "Territorialisation révisée", "date": "2023-11-27", "categorie": "noyau", "resume": "Assouplit et complète le décret de 2022 : critères de territorialisation, communes littorales/montagne, articulation régions/SCoT/bloc communal.", "relations": [{"cible": "2022-762", "type": "assouplit_complete", "detail": null}, {"cible": "2023-630", "type": "tient_compte_de", "detail": "loi ZAN 2"}], "nature": "décret"}, {"numero": "2023-1098", "titre": "Commission régionale de conciliation", "date": "2023-11-27", "categorie": "noyau", "resume": "Organise la commission saisie en cas de contestation d'un projet d'envergure nationale/européenne (3 représentants région, 3 État, 1 magistrat président).", "relations": [], "nature": "décret"}, {"numero": "2023-1408", "titre": "Photovoltaïque et calcul de consommation d'espace", "date": "2023-12-29", "categorie": "noyau", "resume": "Conditions pour qu'une installation photovoltaïque ne soit pas comptée comme consommation d'ENAF (réversibilité, couvert végétal).", "relations": [], "nature": "décret"}, {"numero": "2022-1309", "titre": "Observatoires de l'habitat et du foncier", "date": "2022-10-12", "categorie": "connexe", "resume": "Suivi des marchés fonciers, friches, locaux vacants, potentiel de densification.", "relations": [], "nature": "décret"}, {"numero": "2022-1312", "titre": "Autorisation d'exploitation commerciale et artificialisation", "date": "2022-10-13", "categorie": "connexe", "resume": "Interdiction de principe d'autoriser un projet commercial artificialisant, conditions de dérogation.", "relations": [], "nature": "décret"}, {"numero": "2023-1259", "titre": "Définition de la friche", "date": "2023-12-26", "categorie": "connexe", "resume": "Critères d'identification d'une friche — levier opérationnel clé du ZAN.", "relations": [], "nature": "décret"}, {"numero": "2024-318", "titre": "Agrivoltaïsme", "date": "2024-04-08", "categorie": "connexe", "resume": "Conditions d'implantation d'installations photovoltaïques sur terrains agricoles.", "relations": [{"cible": "2023-1408", "type": "à_articuler_avec", "detail": null}], "nature": "décret"}, {"numero": "2024-452", "titre": "Certificat de projet dans les friches (expérimental)", "date": "2024-05-21", "categorie": "connexe", "resume": "Guichet expérimental (juin 2024 - mai 2027) pour connaître en amont régimes juridiques et délais applicables à un projet en friche.", "relations": [], "nature": "décret"}, {"numero": "—", "titre": "Proposition de loi TRACE", "date": "2025-03-18", "categorie": "en_cours", "resume": "adoptée par le Sénat, transmise à l'AN", "relations": [], "nature": "proposition"}, {"numero": "—", "titre": "Proposition de loi transition foncière", "date": "2025-06-04", "categorie": "en_cours", "resume": "déposée à l'Assemblée nationale", "relations": [], "nature": "proposition"}];
+    
+    const ECHEANCES = {
+    "echeances": [
+        {
+        "date": "2024-11-22",
+        "titre": "SRADDET : intégration ZAN (régions)",
+        "niveau": "Région",
+        "statut": "passe",
+        "obligation": "Les schémas régionaux devaient intégrer la trajectoire ZAN.",
+        "sanction": "À défaut, une baisse uniforme de -50% s appliquait par défaut aux SCoT/PLU.",
+        "acteur_commune": false
+        },
+        {
+        "date": "2027-02-22",
+        "titre": "SCoT : intégration de la trajectoire ZAN",
+        "niveau": "Intercommunalité",
+        "statut": "a_venir2",
+        "obligation": "Le Schéma de Cohérence Territoriale doit intégrer les objectifs de réduction.",
+        "sanction": "Sans intégration : les ouvertures à l urbanisation sont suspendues.",
+        "acteur_commune": true,
+        "incertitude": "Report possible à 2031 si la proposition de loi TRACE est adoptée."
+        },
+        {
+        "date": "2028-02-22",
+        "titre": "Approbation de la révision du PLU",
+        "niveau": "Commune",
+        "statut": "a_venir",
+        "obligation": "Votre Plan Local d Urbanisme doit intégrer les objectifs de sobriété foncière.",
+        "sanction": "Sans intégration : aucune autorisation d urbanisme délivrable en zone à urbaniser (AU).",
+        "acteur_commune": true,
+        "incertitude": "Report possible à 2036 si la proposition de loi TRACE est adoptée."
+        },
+        {
+        "date": "2031-12-31",
+        "titre": "Palier intermédiaire : -50% de consommation d espaces",
+        "niveau": "National",
+        "statut": "a_venir",
+        "obligation": "Objectif de réduction de moitié de la consommation d ENAF (2021-2031).",
+        "sanction": "Palier contesté : la PPL TRACE prévoit de le supprimer.",
+        "acteur_commune": false,
+        "incertitude": "Pourrait être abrogé (proposition de loi TRACE)."
+        }
     ],
-    "leviers": [
-      "La garantie communale d'1 hectare : chaque commune conserve un droit minimal à construire.",
-      "La mobilisation des friches : réhabiliter un site délaissé ne compte pas comme artificialisation.",
-      "La densification douce : surélévation, division parcellaire, comblement des dents creuses.",
-      "Le certificat de projet en friche (expérimental) : sécuriser un projet de recyclage foncier en amont."
-    ],
-    "valide_par": "Argumentaire relu — cohérent avec la loi ZAN 2 (2023) et la jurisprudence du Conseil d'État."
-  }
-};
- 
-const THEMES = [
-  { key:'urbanisme', ico:'🏘️', name:'Urbanisme & foncier', active:true },
-  { key:'ecologie', ico:'🌿', name:'Écologie & biodiversité' },
-  { key:'energie', ico:'⚡', name:'Énergie' },
-  { key:'logement', ico:'🏠', name:'Logement' },
-  { key:'eau', ico:'💧', name:'Eau' },
-  { key:'mobilites', ico:'🚌', name:'Mobilités' },
-];
- 
-const CAT_LABEL = {
-  fondatrice:'Loi fondatrice', preparatoire:'Loi préparatoire', sectorielle:'Loi sectorielle',
-  noyau:'Décret — noyau', connexe:'Décret — connexe', en_cours:'En préparation'
-};
-const FORCE = {
-  loi:{txt:'Contraignant — force de loi', bg:'#eaf2ed', fg:'#2f6b4f'},
-  'décret':{txt:'Contraignant — pouvoir réglementaire', bg:'#fbeee8', fg:'#b5623a'},
-  proposition:{txt:'Pas encore en vigueur', bg:'#f3e8f7', fg:'#8e44ad'}
-};
- 
-let profile = { role:'Maire', commune:'' };
- 
-// ---- signup ----
-document.querySelectorAll('.role-opt').forEach(el=>{
-  el.onclick = ()=>{
-    document.querySelectorAll('.role-opt').forEach(x=>x.classList.remove('sel'));
-    el.classList.add('sel');
-    profile.role = el.dataset.role;
-    checkForm();
-  };
-});
-const communeInput = document.getElementById('communeInput');
-communeInput.oninput = ()=>{ profile.commune = communeInput.value.trim(); checkForm(); };
-function checkForm(){
-  document.getElementById('signupBtn').disabled = !(document.querySelector('.role-opt.sel') && profile.commune);
-}
-document.getElementById('signupBtn').onclick = ()=>{
-  document.getElementById('whoRole').textContent = profile.role;
-  document.getElementById('whoRole2').textContent = profile.role;
-  document.getElementById('whoCommune').textContent = profile.commune;
-  document.getElementById('whoCommune2').textContent = profile.commune;
-  buildHome();
-  show('screen-home');
-};
- 
-// ---- navigation ----
-function show(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
-}
-function goHome(){ show('screen-home'); }
-function goTimeline(){ show('screen-timeline'); }
-function goLois(){
-  document.getElementById('whoRole3').textContent = profile.role;
-  document.getElementById('whoCommune3').textContent = profile.commune;
-  buildLois();
-  show('screen-lois');
-}
- 
-function buildLois(){
-  const list = document.getElementById('loisList');
-  const sorted = [...DATA].sort((a,b)=>a.date.localeCompare(b.date));
-  list.innerHTML = '';
-  sorted.forEach((d)=>{
-    const i = sorted.indexOf(d);
-    const hasArg = ARGUMENTAIRES[d.numero];
-    const card = document.createElement('div');
-    card.style.cssText = 'background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 16px;cursor:pointer;transition:box-shadow .15s;';
-    card.onmouseover = ()=> card.style.boxShadow = 'var(--shadow)';
-    card.onmouseout = ()=> card.style.boxShadow = 'none';
-    card.onclick = ()=> openModal(i);
-    card.innerHTML = `
-      <span class="tl-badge badge-${d.categorie}">${CAT_LABEL[d.categorie]||d.categorie}</span>
-      <div style="font-weight:700;font-size:14px;margin:6px 0 3px;line-height:1.3;">${d.titre}</div>
-      <div style="font-size:11px;color:var(--muted);margin-bottom:7px;">${d.numero!=='—'?'n° '+d.numero+' · ':''}${frDate(d.date)}</div>
-      ${hasArg ? '<div style="font-size:12px;color:var(--forest);font-weight:600;">🛡 Argumentaire disponible</div>' : ''}`;
-    list.appendChild(card);
-  });
-}
- 
-// ---- home ----
-function buildHome(){
-  const grid = document.getElementById('themeGrid');
-  grid.innerHTML = '';
-  THEMES.forEach(t=>{
-    const count = t.active ? DATA.length : 0;
-    const div = document.createElement('div');
-    div.className = 'theme-card' + (t.active ? ' on' : '');
-    div.innerHTML = `<div class="ico">${t.ico}</div>
-      <div><div class="t-name">${t.name}</div>
-      <div class="t-count">${t.active ? count+' textes · dont ZAN' : 'bientôt disponible'}</div></div>`;
-    // CHANGEMENT GANTT ICI
-    if(t.active) div.onclick = goGantt;
-    grid.appendChild(div);
-  });
- 
-  // urgences = les échéances à venir qui concernent la commune
-  const today = new Date().toISOString().slice(0,10);
-  const aVenir = ECHEANCES.echeances
-    .filter(e => e.date >= today)
-    .sort((a,b)=>a.date.localeCompare(b.date))
-    .slice(0,3);
-  const ul = document.getElementById('urgentList');
-  ul.innerHTML = '';
-  aVenir.forEach(e=>{
-    const el = document.createElement('div');
-    el.className = 'u-item';
-    const j = joursRestants(e.date);
-    el.innerHTML = `<div class="u-date">${frDate(e.date)} · dans ${j}</div>
-      <div class="u-title">${e.titre}</div>`;
-    ul.appendChild(el);
-  });
-}
- 
-function joursRestants(iso){
-  const diff = Math.round((new Date(iso) - new Date()) / 86400000);
-  if(diff > 365) return Math.round(diff/365*10)/10 + ' ans';
-  if(diff > 30) return Math.round(diff/30) + ' mois';
-  return diff + ' jours';
-}
- 
-// ---- timeline orientée mandat ----
-const CAT_ECHEANCE = {
-  passe: { color:'#9aa5a0', badge:'Passée', bg:'#eef0ef', fg:'#6b7770' },
-  a_venir_commune: { color:'#b5623a', badge:'Votre commune', bg:'#fbeee8', fg:'#b5623a' },
-  a_venir_autre: { color:'#7a8b9c', badge:'National / régional', bg:'#eef1f4', fg:'#5a6b7c' },
-};
- 
-function buildTimeline(){
-  const track = document.getElementById('tlTrack');
-  track.innerHTML = '';
- 
-  // Fusionne échéances + délibérations, triés par date
-  const items = [];
-  ECHEANCES.echeances.forEach(e => items.push({ ...e, kind:'echeance' }));
-  ECHEANCES.deliberations_demo.forEach(d => items.push({ ...d, kind:'delib' }));
- 
-  // marqueur "aujourd'hui"
-  const today = new Date().toISOString().slice(0,10);
-  items.push({ kind:'today', date: today, titre:"Aujourd'hui" });
- 
-  items.sort((a,b)=>a.date.localeCompare(b.date));
- 
-  items.forEach((it,idx)=>{
-    const node = document.createElement('div');
-    node.className = 'tl-node';
-    const year = it.date.slice(0,4);
- 
-    if(it.kind === 'today'){
-      node.innerHTML = `
-        <div class="tl-year" style="color:var(--forest)">${year}</div>
-        <div class="tl-dot" style="background:var(--forest);width:19px;height:19px;top:43px;box-shadow:0 0 0 5px rgba(47,107,79,0.18)"></div>
-        <div class="tl-card" style="background:#eaf2ed;border-color:var(--forest);text-align:center">
-          <div class="c-title" style="color:var(--forest)">Aujourd'hui</div>
-          <div class="c-resume">Vous êtes ici. Tout ce qui est à droite reste à accomplir.</div>
-        </div>`;
-      track.appendChild(node);
-      return;
+    "deliberations_demo": [
+        {
+        "date": "2024-09-12",
+        "titre": "Délibération : lancement de la révision du PLU",
+        "commune": true,
+        "statut": "fait",
+        "detail": "Conseil municipal — révision du PLU engagée pour intégrer la trajectoire ZAN.",
+        "lien_echeance": "2028-02-22"
+        },
+        {
+        "date": "2026-06-15",
+        "titre": "À prévoir : débat sur les orientations du PADD",
+        "commune": true,
+        "statut": "a_faire",
+        "detail": "Étape recommandée avant l échéance PLU de février 2028.",
+        "lien_echeance": "2028-02-22"
+        }
+    ]
+    };
+    
+    const ARGUMENTAIRES = {
+    "2021-1104": {
+        "numero": "2021-1104",
+        "pourquoi": {
+        "accroche": "La France perdait l équivalent d un département de terres naturelles ou agricoles tous les 7 à 10 ans.",
+        "explication": "Chaque année, environ 20 000 à 30 000 hectares d espaces naturels, agricoles et forestiers étaient bétonnés. Cette artificialisation détruit des terres nourricières, aggrave les inondations (les sols imperméables ne retiennent plus l eau) et accélère la perte de biodiversité. Le ZAN ne interdit pas de construire : il demande de le faire en recyclant l existant (friches, logements vacants) plutôt qu en grignotant toujours plus de terres."
+        },
+        "objections": [
+        {
+            "citoyen": "Mon terrain était constructible, il ne l est plus : vous détruisez la valeur de mon patrimoine.",
+            "reponse": "C est la difficulté la plus légitime. La loi prévoit justement une garantie communale d au moins 1 hectare constructible pour chaque commune, précisément pour ne pas geler tout développement. Le classement d un terrain relève du PLU, qui reste décidé localement : nous pouvons en discuter lors de la révision, et des mécanismes de compensation existent.",
+            "solide": true
+        },
+        {
+            "citoyen": "C est une atteinte au droit de propriété.",
+            "reponse": "Le droit de construire n a jamais été absolu : il a toujours dépendu des règles d urbanisme (PLU, zones). Le Conseil d État et le Conseil constitutionnel ont confirmé que la fixation d objectifs de sobriété foncière est conforme à la Constitution. La propriété du terrain n est pas remise en cause, seul son usage constructible est encadré, comme il l a toujours été.",
+            "solide": true
+        },
+        {
+            "citoyen": "Pourquoi nous, petite commune rurale, alors que les métropoles continuent de s étaler ?",
+            "reponse": "C est une préoccupation entendue : la loi ZAN 2 de 2023 a ajouté des adaptations pour les communes rurales, littorales et de montagne, et une conférence régionale de gouvernance permet de répartir plus justement l effort. Les grands projets nationaux (autoroutes, industrie) sont comptés à part, pour ne pas pénaliser votre enveloppe locale.",
+            "solide": true
+        }
+        ],
+        "leviers": [
+        "La garantie communale d 1 hectare : chaque commune conserve un droit minimal à construire.",
+        "La mobilisation des friches : réhabiliter un site délaissé ne compte pas comme artificialisation.",
+        "La densification douce : surélévation, division parcellaire, comblement des dents creuses.",
+        "Le certificat de projet en friche (expérimental) : sécuriser un projet de recyclage foncier en amont."
+        ],
+        "valide_par": "Argumentaire relu — cohérent avec la loi ZAN 2 (2023) et la jurisprudence du Conseil d État."
     }
- 
-    if(it.kind === 'delib'){
-      const done = it.statut === 'fait';
-      node.innerHTML = `
-        <div class="tl-year">${year}</div>
-        <div class="tl-dot" style="background:var(--forest);top:45px"></div>
-        <div class="tl-card" style="border-left:4px solid var(--forest)" onclick='openEch(${idx})'>
-          <span class="tl-badge" style="background:#eaf2ed;color:var(--forest)">${done?'✓ Fait':'○ À faire'} · Commune</span>
-          <div class="c-title">${it.titre}</div>
-          <div class="c-num">${frDate(it.date)}</div>
-          <div class="c-resume">${it.detail}</div>
-        </div>`;
-      node._data = it;
-      track.appendChild(node);
-      return;
-    }
- 
-    // échéance
-    let style;
-    if(it.statut === 'passe') style = CAT_ECHEANCE.passe;
-    else style = it.acteur_commune ? CAT_ECHEANCE.a_venir_commune : CAT_ECHEANCE.a_venir_autre;
- 
-    const incert = it.incertitude ? `<div class="tl-rel" style="color:var(--gold)">⚠ ${it.incertitude}</div>` : '';
-    node.innerHTML = `
-      <div class="tl-year">${year}</div>
-      <div class="tl-dot" style="background:${style.color};top:45px"></div>
-      <div class="tl-card" onclick='openEch(${idx})'>
-        <span class="tl-badge" style="background:${style.bg};color:${style.fg}">${style.badge} · ${it.niveau}</span>
-        <div class="c-title">${it.titre}</div>
-        <div class="c-num">${frDate(it.date)}</div>
-        <div class="c-resume">${it.obligation}</div>
-        ${incert}
-      </div>`;
-    node._data = it;
-    track.appendChild(node);
-  });
- 
-  // stocke pour la modale
-  window._tlItems = items;
-}
- 
-function openEch(idx){
-  const it = window._tlItems[idx];
-  if(!it || it.kind==='today') return;
- 
-  if(it.kind === 'delib'){
-    document.getElementById('modalBox').innerHTML = `
-      <button class="m-close" onclick="closeModal()">×</button>
-      <span class="tl-badge" style="background:#eaf2ed;color:var(--forest)">Délibération de votre commune</span>
-      <div class="m-title">${it.titre}</div>
-      <div class="m-meta">${frDate(it.date)}</div>
-      <div class="m-section">Détail</div>
-      <div class="m-resume">${it.detail}</div>
-      <div class="m-section">Note</div>
-      <div class="m-resume" style="font-size:13px;color:var(--muted)">Exemple illustratif. À terme, ces délibérations seraient récupérées automatiquement depuis les données ouvertes de votre commune.</div>`;
-    document.getElementById('modalBg').classList.add('open');
-    return;
-  }
- 
-  // échéance
-  const incert = it.incertitude ? `<div class="m-section">Incertitude en cours</div><div class="m-resume" style="font-size:14px">⚠ ${it.incertitude}</div>` : '';
- 
-  // Textes législatifs à l'origine de cette obligation
-  const TEXTES_LIES = {
-    '2024-11-22': ['2021-1104', '2022-217', '2022-762'],
-    '2027-02-22': ['2021-1104', '2023-630', '2022-762', '2023-1097'],
-    '2028-02-22': ['2021-1104', '2023-630', '2025-1129'],
-    '2031-12-31': ['2021-1104'],
-  };
-  const numeros = TEXTES_LIES[it.date] || [];
-  let texLiesHtml = '';
-  if(numeros.length){
-    const items = numeros.map(n=>{
-      const loi = DATA.find(x=>x.numero===n);
-      if(!loi) return '';
-      const hasArg = ARGUMENTAIRES && ARGUMENTAIRES[n];
-      return `<div style="background:var(--page);border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin-bottom:7px;cursor:${hasArg?'pointer':'default'}"
-        onclick="${hasArg?`openArgumentaire('${n}');`:''}">
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--muted);">${loi.nature||'loi'} · ${frDate(loi.date)}</div>
-        <div style="font-size:13.5px;font-weight:600;margin:3px 0;">${loi.titre}</div>
-        <div style="font-size:12px;color:var(--muted);line-height:1.4;">${loi.resume}</div>
-        ${hasArg?'<div style="font-size:11px;color:var(--primary);margin-top:5px;font-weight:600;" class="btn-arg"> Voir l\'argumentaire →</div>':''}
-      </div>`;
-    }).join('');
-    texLiesHtml = `<div class="m-section">Textes à l'origine de cette obligation</div>${items}`;
-  }
- 
-  document.getElementById('modalBox').innerHTML = `
-    <button class="m-close" onclick="closeModal()">×</button>
-    <span class="tl-badge" style="background:${it.acteur_commune?'#fff0ee':'#eef1f4'};color:${it.acteur_commune?'var(--primary)':'#5a6b7c'}">${it.niveau}</span>
-    <div class="m-title">${it.titre}</div>
-    <div class="m-meta">Échéance : ${frDate(it.date)}</div>
-    <div class="m-section">Ce que vous devez faire</div>
-    <div class="m-resume">${it.obligation}</div>
-    <div class="m-section">Si l'échéance n'est pas respectée</div>
-    <div class="m-resume" style="font-size:14px;color:var(--primary)">${it.sanction}</div>
-    ${incert}
-    ${texLiesHtml}`;
-  document.getElementById('modalBg').classList.add('open');
-}
- 
-function labelOf(num){
-  const f = DATA.find(x=>x.numero===num);
-  return f ? '« '+f.titre+' »' : 'n° '+num;
-}
- 
-// ---- modale ----
-function openModal(i){
-  const sorted = [...DATA].sort((a,b)=>a.date.localeCompare(b.date));
-  const d = sorted[i];
-  const force = FORCE[d.nature] || FORCE.loi;
-  let rels = '';
-  if(d.relations && d.relations.length){
-    rels = '<div class="m-section">Liens avec d\'autres textes</div>';
-    d.relations.forEach(r=>{
-      rels += `<div class="m-rel-item"><b>${r.type.replace(/_/g,' ')}</b> ${labelOf(r.cible)}${r.detail? ' — '+r.detail : ''}</div>`;
+    };
+    
+    const THEMES = [
+    { key:'urbanisme', ico:'🏘️', name:'Urbanisme & foncier', active:true },
+    { key:'ecologie', ico:'🌿', name:'Écologie & biodiversité' },
+    { key:'energie', ico:'⚡', name:'Énergie' },
+    { key:'logement', ico:'🏠', name:'Logement' },
+    { key:'eau', ico:'💧', name:'Eau' },
+    { key:'mobilites', ico:'🚌', name:'Mobilités' },
+    ];
+    
+    const CAT_LABEL = {
+    fondatrice:'Loi fondatrice', preparatoire:'Loi préparatoire', sectorielle:'Loi sectorielle',
+    noyau:'Décret — noyau', connexe:'Décret — connexe', en_cours:'En préparation'
+    };
+    const FORCE = {
+    loi:{txt:'Contraignant — force de loi', bg:'#eaf2ed', fg:'#2f6b4f'},
+    'décret':{txt:'Contraignant — pouvoir réglementaire', bg:'#fbeee8', fg:'#b5623a'},
+    proposition:{txt:'Pas encore en vigueur', bg:'#f3e8f7', fg:'#8e44ad'}
+    };
+    
+    let profile = { role:'Maire', commune:'' };
+    
+    // ---- signup ----
+    document.querySelectorAll('.role-opt').forEach(el=>{
+    el.onclick = ()=>{
+        document.querySelectorAll('.role-opt').forEach(x=>x.classList.remove('sel'));
+        el.classList.add('sel');
+        profile.role = el.dataset.role;
+        checkForm();
+    };
     });
-  }
-  const hasArg = ARGUMENTAIRES[d.numero];
-  const argBtn = hasArg
-    ? `<button onclick='openArgumentaire("${d.numero}")' style="margin-top:18px;width:100%;padding:12px;border:none;border-radius:10px;background:var(--forest);color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;">🛡 Comment l'expliquer et la défendre</button>`
-    : `<div style="margin-top:18px;padding:11px;border:1px dashed var(--line);border-radius:10px;text-align:center;font-size:13px;color:var(--muted);">Argumentaire à venir pour ce texte</div>`;
-  document.getElementById('modalBox').innerHTML = `
-    <button class="m-close" onclick="closeModal()">×</button>
-    <span class="tl-badge badge-${d.categorie}">${CAT_LABEL[d.categorie]||d.categorie}</span>
-    <div class="m-title">${d.titre}</div>
-    <div class="m-meta">${d.numero!=='—'?'n° '+d.numero+' · ':''}${frDate(d.date)} · ${d.nature}</div>
-    <span class="m-force" style="background:${force.bg};color:${force.fg}">${force.txt}</span>
-    <div class="m-section">Ce que ce texte change</div>
-    <div class="m-resume">${d.resume}</div>
-    ${rels}
-    ${argBtn}
-  `;
-  document.getElementById('modalBg').classList.add('open');
-}
- 
-function openArgumentaire(numero){
-  const a = ARGUMENTAIRES[numero];
-  if(!a) return;
-  const loi = DATA.find(x=>x.numero===numero);
- 
-  let objHtml = '';
-  a.objections.forEach(o=>{
-    objHtml += `
-      <div style="background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:10px;">
-        <div style="background:var(--urgent-bg);padding:12px 14px;display:flex;gap:9px;align-items:flex-start;">
-          <span style="font-size:15px;">💬</span>
-          <p style="margin:0;font-size:13.5px;font-weight:600;color:var(--clay);">« ${o.citoyen} »</p>
-        </div>
-        <div style="padding:12px 14px;display:flex;gap:9px;align-items:flex-start;">
-          <span style="font-size:15px;">↩️</span>
-          <p style="margin:0;font-size:13.5px;color:var(--ink);line-height:1.55;">${o.reponse}</p>
-        </div>
-      </div>`;
-  });
- 
-  let levHtml = '';
-  a.leviers.forEach(l=>{
-    levHtml += `<p style="margin:0 0 7px;font-size:13.5px;color:#2c5f45;line-height:1.5;">✓ ${l}</p>`;
-  });
- 
-  document.getElementById('modalBox').innerHTML = `
-    <button class="m-close" onclick="closeModal()">×</button>
-    <span class="tl-badge" style="background:#eaf2ed;color:var(--forest)">✓ Argumentaire relu</span>
-    <div class="m-title" style="font-size:19px;">Défendre ce texte face à vos administrés</div>
-    <div class="m-meta">${loi ? loi.titre : ''} · n° ${numero}</div>
- 
-    <div style="background:#eef4f7;border-radius:12px;padding:15px 17px;margin:16px 0;">
-      <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:#3a6b8a;margin:0 0 7px;">Pourquoi cette loi existe</p>
-      <p style="font-size:15px;font-weight:600;color:#1f4a63;margin:0 0 8px;line-height:1.4;">${a.pourquoi.accroche}</p>
-      <p style="font-size:13px;color:#2c5670;margin:0;line-height:1.55;">${a.pourquoi.explication}</p>
-    </div>
- 
-    <div class="m-section">Ce qu'on va vous opposer — et vos réponses</div>
-    ${objHtml}
- 
-    <div style="background:#eaf2ed;border-radius:12px;padding:15px 17px;margin-top:14px;">
-      <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:var(--forest);margin:0 0 9px;">💡 Vos marges de manœuvre concrètes</p>
-      ${levHtml}
-    </div>
- 
-    <div style="margin-top:14px;padding:10px 14px;background:var(--paper);border-radius:8px;font-size:12px;color:var(--muted);line-height:1.5;">
-      ${a.valide_par}
-    </div>
-  `;
-  document.getElementById('modalBg').classList.add('open');
-}
-function closeModal(){ document.getElementById('modalBg').classList.remove('open'); }
- 
-// ---- utils ----
-function frDate(iso){
-  const mois = ['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
-  const [y,m,d] = iso.split('-');
-  return `${parseInt(d)} ${mois[parseInt(m)-1]} ${y}`;
-}
- 
-// ---- LOGIQUE DU GANTT ----
-function goGantt(){
-  document.getElementById('whoRole4').textContent = profile.role;
-  document.getElementById('whoCommune4').textContent = profile.commune;
-  buildGantt();
-  show('screen-gantt');
-}
- 
-function buildGantt() {
-  const container = document.getElementById('ganttContainer');
-  
-  // Limites temporelles du diagramme (2023 à 2032)
-  const startMs = new Date('2023-01-01').getTime();
-  const endMs = new Date('2032-12-31').getTime();
-  const totalMs = endMs - startMs;
-  const todayMs = new Date().getTime();
-  
-  let todayPercent = ((todayMs - startMs) / totalMs) * 100;
-  if(todayPercent < 0) todayPercent = 0;
-  if(todayPercent > 100) todayPercent = 100;
- 
-  let html = `
-    <div class="gantt-header">
-      <div class="gantt-label-col">Action / Échéance</div>
-      <div class="gantt-timeline-col">
-        <span>2023</span><span>2025</span><span>2027</span><span>2029</span><span>2031</span><span>2033</span>
-        <div class="gantt-today-line" style="left: ${todayPercent}%;"></div>
-        <div class="gantt-today-label" style="left: ${todayPercent}%;">Aujourd'hui</div>
-      </div>
-    </div>
-  `;
- 
-  const items = [];
-  ECHEANCES.echeances.forEach(e => items.push({ ...e, kind: 'echeance' }));
-  ECHEANCES.deliberations_demo.forEach(d => items.push({ ...d, kind: 'delib' }));
-  items.sort((a,b) => a.date.localeCompare(b.date));
- 
-  items.forEach((it, idx) => {
-    const dateMs = new Date(it.date).getTime();
-    
-    // On estime qu'une action commence 18 mois avant la deadline (ou 4 mois pour une délibération)
-    let taskStartMs = dateMs - (1.5 * 365 * 24 * 60 * 60 * 1000); 
-    if (it.kind === 'delib') taskStartMs = dateMs - (120 * 24 * 60 * 60 * 1000); 
-    if (taskStartMs < startMs) taskStartMs = startMs;
- 
-    let left = ((taskStartMs - startMs) / totalMs) * 100;
-    let width = ((dateMs - taskStartMs) / totalMs) * 100;
- 
-    let bgColor = "var(--forest)"; 
-    let labelProgress = "En cours";
-    
-    if (it.statut === 'passe' || it.statut === 'fait') {
-        bgColor = "#9aa5a0"; 
-        labelProgress = "Terminé";
-    } else if (it.kind === 'echeance' && !it.acteur_commune) {
-        bgColor = "#7a8b9c";
-        labelProgress = "Suivi";
-    } else if (it.kind === 'echeance' && it.acteur_commune) {
-        bgColor = "var(--clay)";
-        labelProgress = "Action requise";
+    const communeInput = document.getElementById('communeInput');
+    communeInput.oninput = ()=>{ profile.commune = communeInput.value.trim(); checkForm(); };
+    function checkForm(){
+    document.getElementById('signupBtn').disabled = !(document.querySelector('.role-opt.sel') && profile.commune);
     }
- 
-    html += `
-      <div class="gantt-row">
-        <div class="gantt-task-name">
-          ${it.titre}
-          <div class="gantt-task-sub">${it.niveau || 'Commune'} · Échéance: <b>${frDate(it.date)}</b></div>
-        </div>
-        <div class="gantt-track">
-          <div class="gantt-bar" style="left: ${left}%; width: max(${width}%, 120px); background: ${bgColor};" onclick="openEchFromGantt(${idx})">
-            ${it.statut === 'fait' || it.statut === 'passe' ? '✓ ' + labelProgress : '► ' + labelProgress}
-          </div>
-        </div>
-      </div>
+    document.getElementById('signupBtn').onclick = ()=>{
+    document.getElementById('whoRole').textContent = profile.role;
+    document.getElementById('whoRole2').textContent = profile.role;
+    document.getElementById('whoCommune').textContent = profile.commune;
+    document.getElementById('whoCommune2').textContent = profile.commune;
+    buildHome();
+    show('screen-home');
+    };
+    
+    // ---- navigation ----
+    function show(id){
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0,0);
+    }
+    function goHome(){ show('screen-home'); }
+    function goTimeline(){ show('screen-timeline'); }
+    function goLois(){
+    document.getElementById('whoRole3').textContent = profile.role;
+    document.getElementById('whoCommune3').textContent = profile.commune;
+    buildLois();
+    show('screen-lois');
+    }
+    
+    function buildLois(){
+    const list = document.getElementById('loisList');
+    const sorted = [...DATA].sort((a,b)=>a.date.localeCompare(b.date));
+    list.innerHTML = '';
+    sorted.forEach((d)=>{
+        const i = sorted.indexOf(d);
+        const hasArg = ARGUMENTAIRES[d.numero];
+        const card = document.createElement('div');
+        card.style.cssText = 'background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 16px;cursor:pointer;transition:box-shadow .15s;';
+        card.onmouseover = ()=> card.style.boxShadow = 'var(--shadow)';
+        card.onmouseout = ()=> card.style.boxShadow = 'none';
+        card.onclick = ()=> openModal(i);
+        card.innerHTML = `
+        <span class="tl-badge badge-${d.categorie}">${CAT_LABEL[d.categorie]||d.categorie}</span>
+        <div style="font-weight:700;font-size:14px;margin:6px 0 3px;line-height:1.3;">${d.titre}</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:7px;">${d.numero!=='—'?'n° '+d.numero+' · ':''}${frDate(d.date)}</div>
+        ${hasArg ? '<div style="font-size:12px;color:var(--forest);font-weight:600;">🛡 Argumentaire disponible</div>' : ''}`;
+        list.appendChild(card);
+    });
+    }
+    
+    // ---- home ----
+    function buildHome(){
+    const grid = document.getElementById('themeGrid');
+    grid.innerHTML = '';
+    THEMES.forEach(t=>{
+        const count = t.active ? DATA.length : 0;
+        const div = document.createElement('div');
+        div.className = 'theme-card' + (t.active ? ' on' : '');
+        div.innerHTML = `<div class="ico">${t.ico}</div>
+        <div><div class="t-name">${t.name}</div>
+        <div class="t-count">${t.active ? count+' textes · dont ZAN' : 'bientôt disponible'}</div></div>`;
+        // CHANGEMENT GANTT ICI
+        if(t.active) div.onclick = goGantt;
+        grid.appendChild(div);
+    });
+    
+    // urgences = les échéances à venir qui concernent la commune
+    const today = new Date().toISOString().slice(0,10);
+    const aVenir = ECHEANCES.echeances
+        .filter(e => e.date >= today)
+        .sort((a,b)=>a.date.localeCompare(b.date))
+        .slice(0,3);
+    const ul = document.getElementById('urgentList');
+    ul.innerHTML = '';
+    aVenir.forEach(e=>{
+        const el = document.createElement('div');
+        el.className = 'u-item';
+        const j = joursRestants(e.date);
+        el.innerHTML = `<div class="u-date">${frDate(e.date)} · dans ${j}</div>
+        <div class="u-title">${e.titre}</div>`;
+        ul.appendChild(el);
+    });
+    }
+    
+    function joursRestants(iso){
+    const diff = Math.round((new Date(iso) - new Date()) / 86400000);
+    if(diff > 365) return Math.round(diff/365*10)/10 + ' ans';
+    if(diff > 30) return Math.round(diff/30) + ' mois';
+    return diff + ' jours';
+    }
+    
+    // ---- timeline orientée mandat ----
+    const CAT_ECHEANCE = {
+    passe: { color:'#9aa5a0', badge:'Passée', bg:'#eef0ef', fg:'#6b7770' },
+    a_venir_commune: { color:'#b5623a', badge:'Votre commune', bg:'#fbeee8', fg:'#b5623a' },
+    a_venir_autre: { color:'#7a8b9c', badge:'National / régional', bg:'#eef1f4', fg:'#5a6b7c' },
+    };
+    
+    function buildTimeline(){
+    const track = document.getElementById('tlTrack');
+    track.innerHTML = '';
+    
+    // Fusionne échéances + délibérations, triés par date
+    const items = [];
+    ECHEANCES.echeances.forEach(e => items.push({ ...e, kind:'echeance' }));
+    ECHEANCES.deliberations_demo.forEach(d => items.push({ ...d, kind:'delib' }));
+    
+    // marqueur "aujourd'hui"
+    const today = new Date().toISOString().slice(0,10);
+    items.push({ kind:'today', date: today, titre:"Aujourd'hui" });
+    
+    items.sort((a,b)=>a.date.localeCompare(b.date));
+    
+    items.forEach((it,idx)=>{
+        const node = document.createElement('div');
+        node.className = 'tl-node';
+        const year = it.date.slice(0,4);
+    
+        if(it.kind === 'today'){
+        node.innerHTML = `
+            <div class="tl-year" style="color:var(--forest)">${year}</div>
+            <div class="tl-dot" style="background:var(--forest);width:19px;height:19px;top:43px;box-shadow:0 0 0 5px rgba(47,107,79,0.18)"></div>
+            <div class="tl-card" style="background:#eaf2ed;border-color:var(--forest);text-align:center">
+            <div class="c-title" style="color:var(--forest)">Aujourd'hui</div>
+            <div class="c-resume">Vous êtes ici. Tout ce qui est à droite reste à accomplir.</div>
+            </div>`;
+        track.appendChild(node);
+        return;
+        }
+    
+        if(it.kind === 'delib'){
+        const done = it.statut === 'fait';
+        node.innerHTML = `
+            <div class="tl-year">${year}</div>
+            <div class="tl-dot" style="background:var(--forest);top:45px"></div>
+            <div class="tl-card" style="border-left:4px solid var(--forest)" onclick='openEch(${idx})'>
+            <span class="tl-badge" style="background:#eaf2ed;color:var(--forest)">${done?'✓ Fait':'○ À faire'} · Commune</span>
+            <div class="c-title">${it.titre}</div>
+            <div class="c-num">${frDate(it.date)}</div>
+            <div class="c-resume">${it.detail}</div>
+            </div>`;
+        node._data = it;
+        track.appendChild(node);
+        return;
+        }
+    
+        // échéance
+        let style;
+        if(it.statut === 'passe') style = CAT_ECHEANCE.passe;
+        else style = it.acteur_commune ? CAT_ECHEANCE.a_venir_commune : CAT_ECHEANCE.a_venir_autre;
+    
+        const incert = it.incertitude ? `<div class="tl-rel" style="color:var(--gold)">⚠ ${it.incertitude}</div>` : '';
+        node.innerHTML = `
+        <div class="tl-year">${year}</div>
+        <div class="tl-dot" style="background:${style.color};top:45px"></div>
+        <div class="tl-card" onclick='openEch(${idx})'>
+            <span class="tl-badge" style="background:${style.bg};color:${style.fg}">${style.badge} · ${it.niveau}</span>
+            <div class="c-title">${it.titre}</div>
+            <div class="c-num">${frDate(it.date)}</div>
+            <div class="c-resume">${it.obligation}</div>
+            ${incert}
+        </div>`;
+        node._data = it;
+        track.appendChild(node);
+    });
+    
+    // stocke pour la modale
+    window._tlItems = items;
+    }
+    
+    function openEch(idx){
+    const it = window._tlItems[idx];
+    if(!it || it.kind==='today') return;
+    
+    if(it.kind === 'delib'){
+        document.getElementById('modalBox').innerHTML = `
+        <button class="m-close" onclick="closeModal()">×</button>
+        <span class="tl-badge" style="background:#eaf2ed;color:var(--forest)">Délibération de votre commune</span>
+        <div class="m-title">${it.titre}</div>
+        <div class="m-meta">${frDate(it.date)}</div>
+        <div class="m-section">Détail</div>
+        <div class="m-resume">${it.detail}</div>
+        <div class="m-section">Note</div>
+        <div class="m-resume" style="font-size:13px;color:var(--muted)">Exemple illustratif. À terme, ces délibérations seraient récupérées automatiquement depuis les données ouvertes de votre commune.</div>`;
+        document.getElementById('modalBg').classList.add('open');
+        return;
+    }
+    
+    // échéance
+    const incert = it.incertitude ? `<div class="m-section">Incertitude en cours</div><div class="m-resume" style="font-size:14px">⚠ ${it.incertitude}</div>` : '';
+    
+    // Textes législatifs à l'origine de cette obligation
+    const TEXTES_LIES = {
+        '2024-11-22': ['2021-1104', '2022-217', '2022-762'],
+        '2027-02-22': ['2021-1104', '2023-630', '2022-762', '2023-1097'],
+        '2028-02-22': ['2021-1104', '2023-630', '2025-1129'],
+        '2031-12-31': ['2021-1104'],
+    };
+    const numeros = TEXTES_LIES[it.date] || [];
+    let texLiesHtml = '';
+    if(numeros.length){
+        const items = numeros.map(n=>{
+        const loi = DATA.find(x=>x.numero===n);
+        if(!loi) return '';
+        const hasArg = ARGUMENTAIRES && ARGUMENTAIRES[n];
+        return `<div style="background:var(--page);border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin-bottom:7px;cursor:${hasArg?'pointer':'default'}"
+            onclick="${hasArg?`openArgumentaire('${n}');`:''}">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--muted);">${loi.nature||'loi'} · ${frDate(loi.date)}</div>
+            <div style="font-size:13.5px;font-weight:600;margin:3px 0;">${loi.titre}</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.4;">${loi.resume}</div>
+            ${hasArg?'<div style="font-size:11px;color:var(--primary);margin-top:5px;font-weight:600;">🛡 Voir l\'argumentaire →</div>':''}
+        </div>`;
+        }).join('');
+        texLiesHtml = `<div class="m-section">Textes à l'origine de cette obligation</div>${items}`;
+    }
+    
+    document.getElementById('modalBox').innerHTML = `
+        <button class="m-close" onclick="closeModal()">×</button>
+        <span class="tl-badge" style="background:${it.acteur_commune?'#fff0ee':'#eef1f4'};color:${it.acteur_commune?'var(--primary)':'#5a6b7c'}">${it.niveau}</span>
+        <div class="m-title">${it.titre}</div>
+        <div class="m-meta">Échéance : ${frDate(it.date)}</div>
+        <div class="m-section">Ce que vous devez faire</div>
+        <div class="m-resume">${it.obligation}</div>
+        <div class="m-section">Si l'échéance n'est pas respectée</div>
+        <div class="m-resume" style="font-size:14px;color:var(--primary)">${it.sanction}</div>
+        ${incert}
+        ${texLiesHtml}`;
+    document.getElementById('modalBg').classList.add('open');
+    }
+    
+    function labelOf(num){
+    const f = DATA.find(x=>x.numero===num);
+    return f ? '« '+f.titre+' »' : 'n° '+num;
+    }
+    
+    // ---- modale ----
+    function openModal(i){
+    const sorted = [...DATA].sort((a,b)=>a.date.localeCompare(b.date));
+    const d = sorted[i];
+    const force = FORCE[d.nature] || FORCE.loi;
+    let rels = '';
+    if(d.relations && d.relations.length){
+        rels = '<div class="m-section">Liens avec d\'autres textes</div>';
+        d.relations.forEach(r=>{
+        rels += `<div class="m-rel-item"><b>${r.type.replace(/_/g,' ')}</b> ${labelOf(r.cible)}${r.detail? ' — '+r.detail : ''}</div>`;
+        });
+    }
+    const hasArg = ARGUMENTAIRES[d.numero];
+    const argBtn = hasArg
+        ? `<button onclick='openArgumentaire("${d.numero}")' style="margin-top:18px;width:100%;padding:12px;border:none;border-radius:10px;background:var(--forest);color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;">🛡 Comment l'expliquer et la défendre</button>`
+        : `<div style="margin-top:18px;padding:11px;border:1px dashed var(--line);border-radius:10px;text-align:center;font-size:13px;color:var(--muted);">Argumentaire à venir pour ce texte</div>`;
+    document.getElementById('modalBox').innerHTML = `
+        <button class="m-close" onclick="closeModal()">×</button>
+        <span class="tl-badge badge-${d.categorie}">${CAT_LABEL[d.categorie]||d.categorie}</span>
+        <div class="m-title">${d.titre}</div>
+        <div class="m-meta">${d.numero!=='—'?'n° '+d.numero+' · ':''}${frDate(d.date)} · ${d.nature}</div>
+        <span class="m-force" style="background:${force.bg};color:${force.fg}">${force.txt}</span>
+        <div class="m-section">Ce que ce texte change</div>
+        <div class="m-resume">${d.resume}</div>
+        ${rels}
+        ${argBtn}
     `;
-  });
- 
-  window._ganttItems = items;
-  container.innerHTML = html;
-}
- 
-function openEchFromGantt(idx){
-  window._tlItems = window._ganttItems;
-  openEch(idx);
-}
- 
-buildTimeline();
-</script>
- 
-</body>
-</html>
+    document.getElementById('modalBg').classList.add('open');
+    }
+    
+    function openArgumentaire(numero){
+    const a = ARGUMENTAIRES[numero];
+    if(!a) return;
+    const loi = DATA.find(x=>x.numero===numero);
+    
+    let objHtml = '';
+    a.objections.forEach(o=>{
+        objHtml += `
+        <div style="background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:10px;">
+            <div style="background:var(--urgent-bg);padding:12px 14px;display:flex;gap:9px;align-items:flex-start;">
+            <span style="font-size:15px;">💬</span>
+            <p style="margin:0;font-size:13.5px;font-weight:600;color:var(--clay);">« ${o.citoyen} »</p>
+            </div>
+            <div style="padding:12px 14px;display:flex;gap:9px;align-items:flex-start;">
+            <span style="font-size:15px;">↩️</span>
+            <p style="margin:0;font-size:13.5px;color:var(--ink);line-height:1.55;">${o.reponse}</p>
+            </div>
+        </div>`;
+    });
+    
+    let levHtml = '';
+    a.leviers.forEach(l=>{
+        levHtml += `<p style="margin:0 0 7px;font-size:13.5px;color:#2c5f45;line-height:1.5;">✓ ${l}</p>`;
+    });
+    
+    document.getElementById('modalBox').innerHTML = `
+        <button class="m-close" onclick="closeModal()">×</button>
+        <span class="tl-badge" style="background:#eaf2ed;color:var(--forest)">✓ Argumentaire relu</span>
+        <div class="m-title" style="font-size:19px;">Défendre ce texte face à vos administrés</div>
+        <div class="m-meta">${loi ? loi.titre : ''} · n° ${numero}</div>
+    
+        <div style="background:#eef4f7;border-radius:12px;padding:15px 17px;margin:16px 0;">
+        <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:#3a6b8a;margin:0 0 7px;">Pourquoi cette loi existe</p>
+        <p style="font-size:15px;font-weight:600;color:#1f4a63;margin:0 0 8px;line-height:1.4;">${a.pourquoi.accroche}</p>
+        <p style="font-size:13px;color:#2c5670;margin:0;line-height:1.55;">${a.pourquoi.explication}</p>
+        </div>
+    
+        <div class="m-section">Ce qu'on va vous opposer — et vos réponses</div>
+        ${objHtml}
+    
+        <div style="background:#eaf2ed;border-radius:12px;padding:15px 17px;margin-top:14px;">
+        <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:var(--forest);margin:0 0 9px;">💡 Vos marges de manœuvre concrètes</p>
+        ${levHtml}
+        </div>
+    
+        <div style="margin-top:14px;padding:10px 14px;background:var(--paper);border-radius:8px;font-size:12px;color:var(--muted);line-height:1.5;">
+        ${a.valide_par}
+        </div>
+    `;
+    document.getElementById('modalBg').classList.add('open');
+    }
+    function closeModal(){ document.getElementById('modalBg').classList.remove('open'); }
+    
+    // ---- utils ----
+    function frDate(iso){
+    const mois = ['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+    const [y,m,d] = iso.split('-');
+    return `${parseInt(d)} ${mois[parseInt(m)-1]} ${y}`;
+    }
+    
+    // ---- LOGIQUE DU GANTT ----
+    function goGantt(){
+    document.getElementById('whoRole4').textContent = profile.role;
+    document.getElementById('whoCommune4').textContent = profile.commune;
+    buildGantt();
+    show('screen-gantt');
+    }
+    
+    function buildGantt() {
+    const container = document.getElementById('ganttContainer');
+    
+    // Limites temporelles du diagramme (2023 à 2032)
+    const startMs = new Date('2023-01-01').getTime();
+    const endMs = new Date('2032-12-31').getTime();
+    const totalMs = endMs - startMs;
+    const todayMs = new Date().getTime();
+    
+    let todayPercent = ((todayMs - startMs) / totalMs) * 100;
+    if(todayPercent < 0) todayPercent = 0;
+    if(todayPercent > 100) todayPercent = 100;
+    
+    let html = `
+        <div class="gantt-header">
+        <div class="gantt-label-col">Action / Échéance</div>
+        <div class="gantt-timeline-col">
+            <span>2023</span><span>2025</span><span>2027</span><span>2029</span><span>2031</span><span>2033</span>
+            <div class="gantt-today-line" style="left: ${todayPercent}%;"></div>
+            <div class="gantt-today-label" style="left: ${todayPercent}%;">Aujourd'hui</div>
+        </div>
+        </div>
+    `;
+    
+    const items = [];
+    ECHEANCES.echeances.forEach(e => items.push({ ...e, kind: 'echeance' }));
+    ECHEANCES.deliberations_demo.forEach(d => items.push({ ...d, kind: 'delib' }));
+    items.sort((a,b) => a.date.localeCompare(b.date));
+    
+    items.forEach((it, idx) => {
+        const dateMs = new Date(it.date).getTime();
+        
+        // On estime qu'une action commence 18 mois avant la deadline (ou 4 mois pour une délibération)
+        let taskStartMs = dateMs - (1.5 * 365 * 24 * 60 * 60 * 1000); 
+        if (it.kind === 'delib') taskStartMs = dateMs - (120 * 24 * 60 * 60 * 1000); 
+        if (taskStartMs < startMs) taskStartMs = startMs;
+    
+        let left = ((taskStartMs - startMs) / totalMs) * 100;
+        let width = ((dateMs - taskStartMs) / totalMs) * 100;
+    
+        let bgColor = "var(--forest)"; 
+        let labelProgress = "En cours";
+        
+        if (it.statut === 'passe' || it.statut === 'fait') {
+            bgColor = "#9aa5a0"; 
+            labelProgress = "Terminé";
+        } else if (it.kind === 'echeance' && !it.acteur_commune) {
+            bgColor = "#7a8b9c";
+            labelProgress = "Suivi";
+        } else if (it.kind === 'echeance' && it.acteur_commune) {
+            bgColor = "var(--clay)";
+            labelProgress = "Action requise";
+        }
+        
+    
+        html += `
+        <div class="gantt-row">
+            <div class="gantt-task-name">
+            ${it.titre}
+            <div class="gantt-task-sub">${it.niveau || 'Commune'} · Échéance: <b>${frDate(it.date)}</b></div>
+            </div>
+            <div class="gantt-track">
+            <div class="gantt-bar" style="left: ${left}%; width: ${width}%; background: ${bgColor};" onclick="openEchFromGantt(${idx})">
+                ${it.statut === 'fait' || it.statut === 'passe' ? '✓ ' + labelProgress : '► ' + labelProgress}
+    
+            </div>
+            </div>
+        </div>
+        `;
+    });
+    
+    window._ganttItems = items;
+    container.innerHTML = html;
+    }
+    
+    function openEchFromGantt(idx){
+    window._tlItems = window._ganttItems;
+    openEch(idx);
+    }
+    
+    buildTimeline();
+    </script>
+    
+    </body>
+    </html>
