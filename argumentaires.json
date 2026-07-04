@@ -1,0 +1,33 @@
+{
+  "2021-1104": {
+    "numero": "2021-1104",
+    "pourquoi": {
+      "accroche": "La France perdait l'équivalent d'un département de terres naturelles ou agricoles tous les 7 à 10 ans.",
+      "explication": "Chaque année, environ 20 000 à 30 000 hectares d'espaces naturels, agricoles et forestiers étaient bétonnés. Cette artificialisation détruit des terres nourricières, aggrave les inondations (les sols imperméables ne retiennent plus l'eau) et accélère la perte de biodiversité. Le ZAN n'interdit pas de construire : il demande de le faire en recyclant l'existant (friches, logements vacants) plutôt qu'en grignotant toujours plus de terres."
+    },
+    "objections": [
+      {
+        "citoyen": "Mon terrain était constructible, il ne l'est plus : vous détruisez la valeur de mon patrimoine.",
+        "reponse": "C'est la difficulté la plus légitime. La loi prévoit justement une garantie communale d'au moins 1 hectare constructible pour chaque commune, précisément pour ne pas geler tout développement. Le classement d'un terrain relève du PLU, qui reste décidé localement : nous pouvons en discuter lors de la révision, et des mécanismes de compensation existent.",
+        "solide": true
+      },
+      {
+        "citoyen": "C'est une atteinte au droit de propriété.",
+        "reponse": "Le droit de construire n'a jamais été absolu : il a toujours dépendu des règles d'urbanisme (PLU, zones). Le Conseil d'État et le Conseil constitutionnel ont confirmé que la fixation d'objectifs de sobriété foncière est conforme à la Constitution. La propriété du terrain n'est pas remise en cause, seul son usage constructible est encadré, comme il l'a toujours été.",
+        "solide": true
+      },
+      {
+        "citoyen": "Pourquoi nous, petite commune rurale, alors que les métropoles continuent de s'étaler ?",
+        "reponse": "C'est une préoccupation entendue : la loi ZAN 2 de 2023 a ajouté des adaptations pour les communes rurales, littorales et de montagne, et une conférence régionale de gouvernance permet de répartir plus justement l'effort. Les grands projets nationaux (autoroutes, industrie) sont comptés à part, pour ne pas pénaliser votre enveloppe locale.",
+        "solide": true
+      }
+    ],
+    "leviers": [
+      "La garantie communale d'1 hectare : chaque commune conserve un droit minimal à construire.",
+      "La mobilisation des friches : réhabiliter un site délaissé ne compte pas comme artificialisation.",
+      "La densification douce : surélévation, division parcellaire, comblement des dents creuses.",
+      "Le certificat de projet en friche (expérimental) : sécuriser un projet de recyclage foncier en amont."
+    ],
+    "valide_par": "Argumentaire relu — cohérent avec la loi ZAN 2 (2023) et la jurisprudence du Conseil d'État."
+  }
+}

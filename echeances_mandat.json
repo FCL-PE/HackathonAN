@@ -1,0 +1,61 @@
+{
+  "echeances": [
+    {
+      "date": "2024-11-22",
+      "titre": "SRADDET : intégration ZAN (régions)",
+      "niveau": "Région",
+      "statut": "passe",
+      "obligation": "Les schémas régionaux devaient intégrer la trajectoire ZAN.",
+      "sanction": "À défaut, une baisse uniforme de -50% s appliquait par défaut aux SCoT/PLU.",
+      "acteur_commune": false
+    },
+    {
+      "date": "2027-02-22",
+      "titre": "SCoT : intégration de la trajectoire ZAN",
+      "niveau": "Intercommunalité",
+      "statut": "a_venir",
+      "obligation": "Le Schéma de Cohérence Territoriale doit intégrer les objectifs de réduction.",
+      "sanction": "Sans intégration : les ouvertures à l urbanisation sont suspendues.",
+      "acteur_commune": true,
+      "incertitude": "Report possible à 2031 si la proposition de loi TRACE est adoptée."
+    },
+    {
+      "date": "2028-02-22",
+      "titre": "PLU / PLUi / carte communale : intégration ZAN",
+      "niveau": "Commune",
+      "statut": "a_venir",
+      "obligation": "Votre Plan Local d Urbanisme doit intégrer les objectifs de sobriété foncière.",
+      "sanction": "Sans intégration : aucune autorisation d urbanisme délivrable en zone à urbaniser (AU).",
+      "acteur_commune": true,
+      "incertitude": "Report possible à 2036 si la proposition de loi TRACE est adoptée."
+    },
+    {
+      "date": "2031-12-31",
+      "titre": "Palier intermédiaire : -50% de consommation d espaces",
+      "niveau": "National",
+      "statut": "a_venir",
+      "obligation": "Objectif de réduction de moitié de la consommation d ENAF (2021-2031).",
+      "sanction": "Palier contesté : la PPL TRACE prévoit de le supprimer.",
+      "acteur_commune": false,
+      "incertitude": "Pourrait être abrogé (proposition de loi TRACE)."
+    }
+  ],
+  "deliberations_demo": [
+    {
+      "date": "2024-09-12",
+      "titre": "Délibération : lancement de la révision du PLU",
+      "commune": true,
+      "statut": "fait",
+      "detail": "Conseil municipal — révision du PLU engagée pour intégrer la trajectoire ZAN.",
+      "lien_echeance": "2028-02-22"
+    },
+    {
+      "date": "2026-06-15",
+      "titre": "À prévoir : débat sur les orientations du PADD",
+      "commune": true,
+      "statut": "a_faire",
+      "detail": "Étape recommandée avant l échéance PLU de février 2028.",
+      "lien_echeance": "2028-02-22"
+    }
+  ]
+}

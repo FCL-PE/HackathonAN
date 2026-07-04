@@ -1,0 +1,940 @@
+[
+  {
+    "source": "loda",
+    "id_reference": "JORFTEXT000047866733",
+    "titre": "(loda — titre non fourni)",
+    "type": "",
+    "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047866733",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Décret / arrêté (JORF)",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "pertinence non confirmée automatiquement",
+    "avis_llm": {
+      "pertinent": false,
+      "confiance": "faible",
+      "raison": "Informations insuffisantes"
+    }
+  },
+  {
+    "source": "codes",
+    "id_reference": "1400",
+    "titre": "Code général des impôts",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006306068",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "codes",
+    "id_reference": "1400",
+    "titre": "Code général des impôts",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000034110958",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "codes",
+    "id_reference": "543",
+    "titre": "Code civil",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006428846",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "codes",
+    "id_reference": "689",
+    "titre": "Code général des impôts",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006305247",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "judilibre",
+    "id_reference": "23/11043",
+    "titre": "23/11043",
+    "type": "judilibre",
+    "url": "https://www.courdecassation.fr/decision/691ae1415222181ceeb6c25d",
+    "date": "2025-11-14",
+    "juridiction": "Pôle 4 - Chambre 1",
+    "force_juridique": {
+      "niveau": 3,
+      "label": "Décision de la Cour de cassation",
+      "contraignant": false
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "à vérifier : titre non explicite (numéro de dossier), fond à confirmer avec le texte complet",
+    "avis_llm": {
+      "pertinent": false,
+      "confiance": "faible",
+      "raison": "Le titre ne fournit pas d'information contextuelle sur le contenu"
+    }
+  },
+  {
+    "source": "codes",
+    "id_reference": "L451-13",
+    "titre": "Code rural et de la pêche maritime",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006584037",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": true,
+    "raison_exclusion": null
+  },
+  {
+    "source": "codes",
+    "id_reference": "663",
+    "titre": "Code général des impôts",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006305212",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "arianeweb",
+    "id_reference": "2206204",
+    "titre": "Tribunal Administratif de Cergy-Pontoise, 2025-02-25, n° 2206204",
+    "type": "arianeweb",
+    "url": "https://www.conseil-etat.fr/arianeweb/#/view-document/%2FAriane_Web%2FDTA%2F2206204%2F20250225",
+    "date": "2025-02-25",
+    "juridiction": "Tribunal Administratif de Cergy-Pontoise",
+    "force_juridique": {
+      "niveau": 3,
+      "label": "Décision de justice administrative",
+      "contraignant": false
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "à vérifier : titre non explicite (numéro de dossier), fond à confirmer avec le texte complet",
+    "avis_llm": {
+      "pertinent": false,
+      "confiance": "faible",
+      "raison": "le titre ne fournit pas d'information sur le contenu de la décision"
+    }
+  },
+  {
+    "source": "codes",
+    "id_reference": "R526-1",
+    "titre": "Code de commerce",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032204918",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "arianeweb",
+    "id_reference": "2300369",
+    "titre": "Tribunal Administratif de Toulon, 2024-12-23, n° 2300369",
+    "type": "arianeweb",
+    "url": "https://www.conseil-etat.fr/arianeweb/#/view-document/%2FAriane_Web%2FDTA%2F2300369%2F20241223",
+    "date": "2024-12-23",
+    "juridiction": "Tribunal Administratif de Toulon",
+    "force_juridique": {
+      "niveau": 3,
+      "label": "Décision de justice administrative",
+      "contraignant": false
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "à vérifier : titre non explicite (numéro de dossier), fond à confirmer avec le texte complet",
+    "avis_llm": {
+      "pertinent": false,
+      "confiance": "faible",
+      "raison": "le titre ne fournit pas d'information sur le contenu"
+    }
+  },
+  {
+    "source": "bofip",
+    "id_reference": "",
+    "titre": "IF - Taxe foncière sur les propriétés non bâties - Champ d'application et territorialité - Personnes imposables",
+    "type": "bofip",
+    "url": "https://bofip.impots.gouv.fr/bofip/3571-PGP.html/identifiant=BOI-IF-TFNB-10-20-20220428",
+    "date": "2022-04-28",
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 4,
+      "label": "Doctrine fiscale administrative",
+      "contraignant": false
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "à vérifier : doctrine administrative, lien avec le ZAN à confirmer",
+    "avis_llm": {
+      "pertinent": false,
+      "confiance": "moyenne",
+      "raison": "La taxe foncière n'est pas directement liée à la loi ZAN"
+    }
+  },
+  {
+    "source": "codes",
+    "id_reference": "416",
+    "titre": "Code général des impôts",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006309867",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "codes",
+    "id_reference": "417",
+    "titre": "Code général des impôts",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006304773",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "cnil",
+    "id_reference": "",
+    "titre": "Délibération portant avis à la mise en oeuvre, par l'INSEE, d'un traitement automatisé d'informations nominatives à l'occasion de l'enquête \"panel européen 1994-1996\"",
+    "type": "cnil",
+    "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000017652499",
+    "date": "1994-07-05",
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 4,
+      "label": "Délibération CNIL (avis)",
+      "contraignant": false
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "terme hors-sujet détecté : 'panel européen'"
+  },
+  {
+    "source": "codes",
+    "id_reference": "166",
+    "titre": "Code du vin",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006620812",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "terme hors-sujet détecté : 'code du vin'"
+  },
+  {
+    "source": "codes",
+    "id_reference": "R1322-68",
+    "titre": "Code de la santé publique",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042286317",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "loda",
+    "id_reference": "JORFTEXT000022734354",
+    "titre": "Arrêté du 23 juillet 2010 fixant les exigences et recommandations en matière de certification de conformité d'un produit de charcuterie",
+    "type": "arrete_article",
+    "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000022734354",
+    "date": "2010-08-24",
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Décret / arrêté (JORF)",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "terme hors-sujet détecté : 'charcuterie'"
+  },
+  {
+    "source": "eurlex",
+    "id_reference": "",
+    "titre": "52013XC0926(01)",
+    "type": "eurlex",
+    "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:52013XC0926(01)",
+    "date": "2013-09-26",
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 2,
+      "label": "Droit européen",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "à vérifier : texte UE générique, lien avec le ZAN à confirmer",
+    "avis_llm": {
+      "pertinent": false,
+      "confiance": "faible",
+      "raison": "le titre est un code sans contexte"
+    }
+  },
+  {
+    "source": "codes",
+    "id_reference": "55 F",
+    "titre": "Code général des impôts, annexe IV",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006300578",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "arianeweb",
+    "id_reference": "24BX02234",
+    "titre": "Cour administrative d'appel de Bordeaux, 2025-09-26, n° 24BX02234",
+    "type": "arianeweb",
+    "url": "https://www.conseil-etat.fr/arianeweb/#/view-document/%2FAriane_Web%2FDCA%2F24BX02234%2F20250926",
+    "date": "2025-09-26",
+    "juridiction": "Cour administrative d'appel de Bordeaux",
+    "force_juridique": {
+      "niveau": 3,
+      "label": "Décision de justice administrative",
+      "contraignant": false
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "à vérifier : titre non explicite (numéro de dossier), fond à confirmer avec le texte complet",
+    "avis_llm": {
+      "pertinent": false,
+      "confiance": "faible",
+      "raison": "Le titre ne fournit pas d'information sur le contenu de la décision"
+    }
+  },
+  {
+    "source": "arianeweb",
+    "id_reference": "24BX02277",
+    "titre": "Cour administrative d'appel de Bordeaux, 2025-09-26, n° 24BX02277",
+    "type": "arianeweb",
+    "url": "https://www.conseil-etat.fr/arianeweb/#/view-document/%2FAriane_Web%2FDCA%2F24BX02277%2F20250926",
+    "date": "2025-09-26",
+    "juridiction": "Cour administrative d'appel de Bordeaux",
+    "force_juridique": {
+      "niveau": 3,
+      "label": "Décision de justice administrative",
+      "contraignant": false
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "à vérifier : titre non explicite (numéro de dossier), fond à confirmer avec le texte complet",
+    "avis_llm": {
+      "pertinent": false,
+      "confiance": "faible",
+      "raison": "Le titre ne fournit pas d'information sur le contenu de la décision"
+    }
+  },
+  {
+    "source": "arianeweb",
+    "id_reference": "2204983",
+    "titre": "Tribunal Administratif de Rennes, 2025-03-13, n° 2204983",
+    "type": "arianeweb",
+    "url": "https://www.conseil-etat.fr/arianeweb/#/view-document/%2FAriane_Web%2FDTA%2F2204983%2F20250313",
+    "date": "2025-03-13",
+    "juridiction": "Tribunal Administratif de Rennes",
+    "force_juridique": {
+      "niveau": 3,
+      "label": "Décision de justice administrative",
+      "contraignant": false
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "à vérifier : titre non explicite (numéro de dossier), fond à confirmer avec le texte complet",
+    "avis_llm": {
+      "pertinent": false,
+      "confiance": "faible",
+      "raison": "le titre ne fournit pas d'information sur le contenu"
+    }
+  },
+  {
+    "source": "codes",
+    "id_reference": "Annexe C6 bis à l'article A114-5",
+    "titre": "Code de la mutualité",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020995160",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "terme hors-sujet détecté : 'mutualité'"
+  },
+  {
+    "source": "codes",
+    "id_reference": "L101-2",
+    "titre": "Code de l'urbanisme",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048599920",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": true,
+    "raison_exclusion": null
+  },
+  {
+    "source": "arianeweb",
+    "id_reference": "2009343",
+    "titre": "Tribunal Administratif de Marseille, 2024-05-06, n° 2009343",
+    "type": "arianeweb",
+    "url": "https://www.conseil-etat.fr/arianeweb/#/view-document/%2FAriane_Web%2FDTA%2F2009343%2F20240506",
+    "date": "2024-05-06",
+    "juridiction": "Tribunal Administratif de Marseille",
+    "force_juridique": {
+      "niveau": 3,
+      "label": "Décision de justice administrative",
+      "contraignant": false
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "à vérifier : titre non explicite (numéro de dossier), fond à confirmer avec le texte complet",
+    "avis_llm": {
+      "pertinent": false,
+      "confiance": "faible",
+      "raison": "le titre ne fournit pas d'information sur le contenu"
+    }
+  },
+  {
+    "source": "eurlex",
+    "id_reference": "",
+    "titre": "52003AE0408",
+    "type": "eurlex",
+    "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:52003AE0408",
+    "date": "2003-03-26",
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 2,
+      "label": "Droit européen",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "à vérifier : texte UE générique, lien avec le ZAN à confirmer",
+    "avis_llm": {
+      "pertinent": false,
+      "confiance": "faible",
+      "raison": "le titre est un code sans contexte"
+    }
+  },
+  {
+    "source": "eurlex",
+    "id_reference": "",
+    "titre": "52002DC0308",
+    "type": "eurlex",
+    "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:52002DC0308",
+    "date": "2002-06-14",
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 2,
+      "label": "Droit européen",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "à vérifier : texte UE générique, lien avec le ZAN à confirmer",
+    "avis_llm": {
+      "pertinent": false,
+      "confiance": "faible",
+      "raison": "Le titre est un code sans contexte et la date est antérieure à la loi ZAN"
+    }
+  },
+  {
+    "source": "loda",
+    "id_reference": "JORFTEXT000037160529",
+    "titre": "Arrêté du 4 juillet 2018 portant approbation du règlement général de l'Agence nationale pour la rénovation urbaine relatif au nouveau programme national de renouvellement urbain",
+    "type": "arrete_article",
+    "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037160529",
+    "date": "2018-07-07",
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Décret / arrêté (JORF)",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "pertinence non confirmée automatiquement",
+    "avis_llm": {
+      "pertinent": false,
+      "confiance": "moyenne",
+      "raison": "L'arrêté concerne la rénovation urbaine, mais ne mentionne pas explicitement la loi ZAN"
+    }
+  },
+  {
+    "source": "codes",
+    "id_reference": "L121-8",
+    "titre": "Code de l'urbanisme",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037667305",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": true,
+    "raison_exclusion": null
+  },
+  {
+    "source": "codes",
+    "id_reference": "L151-7-3",
+    "titre": "Code de l'urbanisme",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000052863278",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": true,
+    "raison_exclusion": null
+  },
+  {
+    "source": "codes",
+    "id_reference": "L122-5",
+    "titre": "Code de l'urbanisme",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033746397",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": true,
+    "raison_exclusion": null
+  },
+  {
+    "source": "jurisprudence",
+    "id_reference": "",
+    "titre": "CAA de VERSAILLES, 6ème chambre, 31/03/2021, 18VE03740, Inédit au recueil Lebon",
+    "type": "jurisprudence",
+    "url": "https://www.legifrance.gouv.fr/ceta/id/CETATEXT000043350417",
+    "date": "2021-03-31",
+    "juridiction": "CAA de VERSAILLES",
+    "force_juridique": {
+      "niveau": 3,
+      "label": "Décision de justice (fait jurisprudence)",
+      "contraignant": false
+    },
+    "pertinent_zan": true,
+    "raison_exclusion": "à vérifier : titre non explicite (numéro de dossier), fond à confirmer avec le texte complet",
+    "avis_llm": {
+      "pertinent": true,
+      "confiance": "moyenne",
+      "raison": "La source est une jurisprudence, ce qui pourrait être pertinent pour comprendre les applications et interprétations de la loi ZAN, mais le titre ne fournit pas d'informations directes sur le contenu."
+    }
+  },
+  {
+    "source": "codes",
+    "id_reference": "175",
+    "titre": "Code général des impôts, annexe I",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006293588",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "codes",
+    "id_reference": "514",
+    "titre": "Code général des impôts",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006305094",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "codes",
+    "id_reference": "L3351-13",
+    "titre": "Code de la santé publique",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048654831",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "codes",
+    "id_reference": "511 bis",
+    "titre": "Code général des impôts",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006304866",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "eurlex",
+    "id_reference": "",
+    "titre": "61998CC0482",
+    "type": "eurlex",
+    "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:61998CC0482",
+    "date": "2000-06-15",
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 2,
+      "label": "Droit européen",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "à vérifier : texte UE générique, lien avec le ZAN à confirmer",
+    "avis_llm": {
+      "pertinent": false,
+      "confiance": "faible",
+      "raison": "le titre est un code sans contexte"
+    }
+  },
+  {
+    "source": "codes",
+    "id_reference": "173",
+    "titre": "Code général des impôts, annexe I",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006293585",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "judilibre",
+    "id_reference": "23/03137",
+    "titre": "23/03137",
+    "type": "judilibre",
+    "url": "https://www.courdecassation.fr/decision/6942d4d91655f7b766b78427",
+    "date": "2025-12-11",
+    "juridiction": "2ème chambre section A",
+    "force_juridique": {
+      "niveau": 3,
+      "label": "Décision de la Cour de cassation",
+      "contraignant": false
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "à vérifier : titre non explicite (numéro de dossier), fond à confirmer avec le texte complet",
+    "avis_llm": {
+      "pertinent": false,
+      "confiance": "faible",
+      "raison": "le titre ne fournit pas d'information contextuelle sur le contenu"
+    }
+  },
+  {
+    "source": "codes",
+    "id_reference": "170",
+    "titre": "Code général des impôts, annexe I",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032881236",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "codes",
+    "id_reference": "188",
+    "titre": "Code général des impôts, annexe I",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032881220",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "codes",
+    "id_reference": "186",
+    "titre": "Code général des impôts, annexe I",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032881225",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "codes",
+    "id_reference": "192",
+    "titre": "Code général des impôts, annexe I",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032881242",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "codes",
+    "id_reference": "169",
+    "titre": "Code général des impôts, annexe I",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006293598",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "codes",
+    "id_reference": "L141-7",
+    "titre": "Code de l'urbanisme",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042013075",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": true,
+    "raison_exclusion": null
+  },
+  {
+    "source": "codes",
+    "id_reference": "L3334-6-1",
+    "titre": "Code général des collectivités territoriales",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044980701",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": true,
+    "raison_exclusion": null
+  },
+  {
+    "source": "codes",
+    "id_reference": "R3334-2",
+    "titre": "Code général des collectivités territoriales",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046053104",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": true,
+    "raison_exclusion": null
+  },
+  {
+    "source": "loda",
+    "id_reference": "JORFTEXT000027618532_01-01-2999",
+    "titre": "Décret n° 2013-548 du 26 juin 2013 pris pour l'application du II de l'article 1465 A du code général des impôts relatif aux zones de revitalisation rurale",
+    "type": "decret_article",
+    "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000027618532",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Décret / arrêté (JORF)",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "code générique sans lien direct avec l'urbanisme/ZAN"
+  },
+  {
+    "source": "eurlex",
+    "id_reference": "",
+    "titre": "52000IE0469",
+    "type": "eurlex",
+    "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:52000IE0469",
+    "date": "2000-04-27",
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 2,
+      "label": "Droit européen",
+      "contraignant": true
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "à vérifier : texte UE générique, lien avec le ZAN à confirmer",
+    "avis_llm": {
+      "pertinent": false,
+      "confiance": "faible",
+      "raison": "le titre est un numéro de dossier sans contexte"
+    }
+  },
+  {
+    "source": "cnil",
+    "id_reference": "",
+    "titre": "Délibération n° 2012-087 du 29 mars 2012 portant autorisation unique de traitements automatisés de données à caractère personnel mis en œuvre dans le cadre d'un système d'information géographique (SIG)",
+    "type": "cnil",
+    "url": "https://www.legifrance.gouv.fr/cnil/id/CNILTEXT000025686487",
+    "date": "2012-03-29",
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 4,
+      "label": "Délibération CNIL (avis)",
+      "contraignant": false
+    },
+    "pertinent_zan": false,
+    "raison_exclusion": "à vérifier : doctrine administrative, lien avec le ZAN à confirmer",
+    "avis_llm": {
+      "pertinent": false,
+      "confiance": "haute",
+      "raison": "La source concerne la protection des données personnelles et non la loi ZAN"
+    }
+  },
+  {
+    "source": "codes",
+    "id_reference": "L311-5",
+    "titre": "Code des communes",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006346684",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": true,
+    "raison_exclusion": null
+  },
+  {
+    "source": "codes",
+    "id_reference": "R151-18",
+    "titre": "Code de l'urbanisme",
+    "type": "codes",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031720615",
+    "date": null,
+    "juridiction": null,
+    "force_juridique": {
+      "niveau": 1,
+      "label": "Loi / règlement en vigueur",
+      "contraignant": true
+    },
+    "pertinent_zan": true,
+    "raison_exclusion": null
+  }
+]
