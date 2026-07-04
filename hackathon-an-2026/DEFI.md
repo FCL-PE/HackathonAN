@@ -2,7 +2,7 @@
 Thelma — Retrouver la généalogie d'une intention législative (le cas du ZAN)
 
 ### Description courte
-Thelma est une plateforme d'aide aux élus locaux qui transforme la généalogie
+Thelma est une plateforme pour les élus locaux qui transforme la généalogie
 législative d'une politique complexe — ici le Zéro Artificialisation Nette (ZAN)
 — en feuille de route de mandat, frise chronologique et argumentaires prêts à
 l'emploi face aux administrés.
@@ -15,8 +15,8 @@ Nicolas Thouvenin
 Le ZAN est un cas d'école pour la « généalogie d'une intention législative » :
 une intention unique et datée (réduire l'artificialisation des sols, posée par
 la loi Climat et Résilience du 22 août 2021) qui se retrouve précisée,
-corrigée et contestée par une quinzaine de lois, une douzaine de décrets et
-plusieurs propositions de loi en cours, jusqu'à aujourd'hui.
+corrigée et contestée par plusieurs lois, décrets et
+propositions en cours, jusqu'à aujourd'hui.
 
 Plutôt qu'un graphe destiné à un public d'analystes, nous avons choisi de
 mettre cette généalogie au service d'un public précis — les élus locaux, en
@@ -28,9 +28,9 @@ priorité les maires — avec deux volets :
    connexe pour un décret) et ses relations explicites avec les autres textes
    (modifie / complète / remplace / précise / abroge).
 2. **La mise en usage** — cette base alimente un tableau de bord pensé pour un
-   maire fraîchement élu : ce qui le concerne dans son mandat (frise et vue
+   élu local : ce qui le concerne dans son mandat (frise et vue
    Gantt des échéances, avec ce qui reste incertain faute d'un vote définitif
-   sur la proposition de loi TRACE), et comment expliquer une loi impopulaire à
+   sur la proposition de loi TRACE), et comment l'expliquer à
    ses administrés (fiches « argumentaire » : pourquoi le texte existe,
    objections fréquentes et réponses, marges de manœuvre concrètes).
 
@@ -57,19 +57,20 @@ sur les cas ambigus plutôt qu'un classement à l'aveugle.
 ### Contributeurs
 - Nicolas Thouvenin (porteur)
 - Philippe Cases
+- Jérome Funamal
 - Carlos Holguin
 - Guillaume de la Lubie
 - Adewoye Shakir Oyeossi
-- Alex Sant'André
-- Amine A.
+- Alex Sant André
+- Amine Abouhodaifa
 - Thelma Tertrais
 
 ### Ressources utilisées
 Cochez les ressources utilisées en remplaçant `[ ]` par `[x]`.
 
 - [ ] `openfisca-france-parameters` — Base de données de paramètres ✺ OpenFisca
-- [ ] `an-dossiers-legislatifs` — Dossiers législatifs de l'Assemblée nationale (législature courante) ✺ Assemblée nationale
-- [ ] `an-amendements-xvii` — Amendements déposés à l'Assemblée nationale (législature actuelle) ✺ Assemblée nationale
+- [x] `an-dossiers-legislatifs` — Dossiers législatifs de l'Assemblée nationale (législature courante) ✺ Assemblée nationale
+- [x] `an-amendements-xvii` — Amendements déposés à l'Assemblée nationale (législature actuelle) ✺ Assemblée nationale
 - [ ] `an-comptes-rendus` — Comptes rendus de la séance publique à l'Assemblée nationale (législature actuelle) ✺ Assemblée nationale
 - [ ] `an-votes-xvii` — Votes des députés (législature actuelle) ✺ Assemblée nationale
 - [ ] `an-deputes-en-exercice` — Députés en exercice ✺ Assemblée nationale
@@ -89,8 +90,8 @@ Cochez les ressources utilisées en remplaçant `[ ]` par `[x]`.
 - [ ] `senat-questions-gouvernement` — Questions orales et écrites du Sénat au Gouvernement ✺ Sénat
 - [ ] `senat-comptes-rendus` — Comptes rendus de la séance publique au Sénat ✺ Sénat
 - [ ] `an-et-co-database-regroupement-toutes-donnees` — Base de données unifiée Parlement / Législation / Service Public ✺ Assemblée nationale & communauté
-- [ ] `an-et-co-serveur-mcp-regroupement-toutes-donnees` — Serveur MCP  - Accès unifié Parlement / Législation / Service Public ✺ Assemblée nationale & communauté
-- [ ] `an-et-co-api-regroupement-toutes-donnees` — API - Accès unifié Parlement / Législation / Service Public ✺ Assemblée nationale & communauté
+- [x] `an-et-co-serveur-mcp-regroupement-toutes-donnees` — Serveur MCP  - Accès unifié Parlement / Législation / Service Public ✺ Assemblée nationale & communauté
+- [] `an-et-co-api-regroupement-toutes-donnees` — API - Accès unifié Parlement / Législation / Service Public ✺ Assemblée nationale & communauté
 - [ ] `legiwatch-api-parlement` — API Parlement ✺ LegiWatch
 - [ ] `legiwatch-database-parlement` — Base de données Parlement ✺ LegiWatch
 - [ ] `legiwatch-serveur-mcp-parlement` — Serveur MCP Parlement ✺ LegiWatch
