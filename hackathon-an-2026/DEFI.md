@@ -2,10 +2,10 @@
 Thelma — Retrouver la généalogie d'une intention législative (le cas du ZAN)
 
 ### Description courte
-Thelma est une plateforme pour les élus locaux qui transforme la généalogie
-législative d'une politique complexe — ici le Zéro Artificialisation Nette (ZAN)
-— en feuille de route de mandat, frise chronologique et argumentaires prêts à
-l'emploi face aux administrés.
+Thelma est une plateforme pour les élus qui traduit les lois en enjeux locaux et bénéfices concrets.
+Elle permet aux élus de monter rapidement en compétence de manière ludique.
+Elle donne les éléments nécessaires pour s'approprier la loi et la communiquer.
+Elle permet aux élus décliner l'intention du législateur en actions concrètes pendant son mandat.
 
 ### Porteur
 Nicolas Thouvenin
@@ -57,13 +57,13 @@ sur les cas ambigus plutôt qu'un classement à l'aveugle.
 ### Contributeurs
 - Nicolas Thouvenin (porteur)
 - Philippe Cases
+- Thelma Tertrais
+- Amine Abouhodaifa
 - Jérome Funamal
 - Carlos Holguin
 - Guillaume de la Lubie
 - Adewoye Shakir Oyeossi
 - Alex Sant André
-- Amine Abouhodaifa
-- Thelma Tertrais
 
 ### Ressources utilisées
 Cochez les ressources utilisées en remplaçant `[ ]` par `[x]`.
