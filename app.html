@@ -66,7 +66,7 @@
   </div>
   <div class="tl-head">
     <button class="back-link" onclick="goHome()">← Retour au tableau de bord</button>
-    <div class="tl-title">Urbanisme &amp; foncier — les textes du ZAN</div>
+    <div class="tl-title">Urbanisme &amp; foncier — les textes du <a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043956924" target="_blank" style="color:var(--primary);text-decoration:underline;font-weight:800;">ZAN</a></div>
     <div class="tl-sub">Cliquez sur un texte pour son résumé, ses liens, et l'argumentaire pour le défendre.</div>
   </div>
   <div style="max-width:1180px;margin:0 auto;padding:8px 28px 48px;">
@@ -82,7 +82,7 @@
   </div>
   <div class="tl-head">
     <button class="back-link" onclick="goHome()">← Retour au tableau de bord</button>
-    <div class="tl-title" id="tlTitle">Votre feuille de route ZAN — mandat 2026-2032</div>
+    <div class="tl-title" id="tlTitle">Votre feuille de route — mandat 2026-2032</div>
     <div class="tl-sub">Les échéances qui engagent votre commune, du passé récent à la fin de votre mandat. Faites défiler vers la droite pour aller vers le futur.</div>
     <div class="tl-legend">
       <span><span class="lg-dot" style="background:#9aa5a0"></span> Échéance passée</span>
@@ -105,8 +105,13 @@
   </div>
   <div class="tl-head">
     <button class="back-link" onclick="goHome()">← Retour au tableau de bord</button>
-    <div class="tl-title">Votre feuille de route ZAN — mandat 2026-2032</div>
-    <div class="tl-sub">Chaque barre représente la période d'action recommandée avant l'échéance. Cliquez sur une barre pour les détails et les textes de loi associés.</div>
+    <div class="tl-title">Votre feuille de route — mandat 2026-2032</div>
+    <div class="tl-sub">
+      Chaque barre représente la période d'action recommandée avant l'échéance.
+      Cliquez sur une barre pour les détails et les textes de loi associés.
+      &nbsp;·&nbsp;
+      <button onclick="goLois()" style="background:none;border:none;color:var(--primary);font-size:14px;font-weight:600;cursor:pointer;text-decoration:underline;font-family:inherit;padding:0;">[ Historique ]</button>
+    </div>
   </div>
   <div style="max-width:1180px;margin:0 auto;padding:16px 28px 48px;overflow-x:auto;">
     <div id="ganttContainer"></div>
@@ -129,35 +134,35 @@ const ECHEANCES = {
       "niveau": "Région",
       "statut": "passe",
       "obligation": "Les schémas régionaux devaient intégrer la trajectoire ZAN.",
-      "sanction": "À défaut, une baisse uniforme de -50% s appliquait par défaut aux SCoT/PLU.",
+      "sanction": "À défaut, une baisse uniforme de -50% s'appliquait par défaut aux SCoT/PLU.",
       "acteur_commune": false
     },
     {
       "date": "2027-02-22",
-      "titre": "SCoT : intégration de la trajectoire ZAN",
+      "titre": "SCoT : intégration de la trajectoire",
       "niveau": "Intercommunalité",
       "statut": "a_venir",
       "obligation": "Le Schéma de Cohérence Territoriale doit intégrer les objectifs de réduction.",
-      "sanction": "Sans intégration : les ouvertures à l urbanisation sont suspendues.",
+      "sanction": "Sans intégration : les ouvertures à l'urbanisation sont suspendues.",
       "acteur_commune": true,
       "incertitude": "Report possible à 2031 si la proposition de loi TRACE est adoptée."
     },
     {
       "date": "2028-02-22",
-      "titre": "PLU / PLUi / carte communale : intégration ZAN",
+      "titre": "PLU / PLUi / carte communale : intégration",
       "niveau": "Commune",
       "statut": "a_venir",
-      "obligation": "Votre Plan Local d Urbanisme doit intégrer les objectifs de sobriété foncière.",
-      "sanction": "Sans intégration : aucune autorisation d urbanisme délivrable en zone à urbaniser (AU).",
+      "obligation": "Votre Plan Local d'Urbanisme doit intégrer les objectifs de sobriété foncière.",
+      "sanction": "Sans intégration : aucune autorisation d'urbanisme délivrable en zone à urbaniser (AU).",
       "acteur_commune": true,
       "incertitude": "Report possible à 2036 si la proposition de loi TRACE est adoptée."
     },
     {
       "date": "2031-12-31",
-      "titre": "Palier intermédiaire : -50% de consommation d espaces",
+      "titre": "Palier intermédiaire : -50% de consommation d'espaces",
       "niveau": "National",
       "statut": "a_venir",
-      "obligation": "Objectif de réduction de moitié de la consommation d ENAF (2021-2031).",
+      "obligation": "Objectif de réduction de moitié de la consommation d'ENAF (2021-2031).",
       "sanction": "Palier contesté : la PPL TRACE prévoit de le supprimer.",
       "acteur_commune": false,
       "incertitude": "Pourrait être abrogé (proposition de loi TRACE)."
@@ -177,7 +182,7 @@ const ECHEANCES = {
       "titre": "À prévoir : débat sur les orientations du PADD",
       "commune": true,
       "statut": "a_faire",
-      "detail": "Étape recommandée avant l échéance PLU de février 2028.",
+      "detail": "Étape recommandée avant l'échéance PLU de février 2028.",
       "lien_echeance": "2028-02-22"
     }
   ]
